@@ -24,6 +24,25 @@
           <router-link to="/CSS">CSS</router-link>
           <router-link to="/vue">Vue</router-link>
           <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS">CSS</router-link>
         </div>
       </div>
       <div class="title-warp">
@@ -57,6 +76,8 @@ a {
 
 #nav {
   width: 10rem;
+  height: 100%;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -81,7 +102,8 @@ a {
     margin-bottom: 0.5rem;
     height: 0px;
     overflow: hidden;
-    transition: height 0.2s cubic-bezier(0.893, 0.005, 0.54, 0.975);
+    transition: height 0.18s cubic-bezier(0.669, 0.443, 0.85, 0.975);
+    // transition: height 0.2s cubic-bezier(0.367, 0.2277, 0.85, 0.975);
   }
 
   & .menu-warp a {
@@ -114,7 +136,8 @@ a {
   width: 100%;
   height: 100%;
   overflow: auto;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
+  // 줄바꿈
   word-break: break-all;
   white-space: pre-line;
 }
