@@ -51,11 +51,12 @@ a {
 
 #main {
   display: flex;
+  justify-content: space-between;
   height: 100vh;
 }
 
 #nav {
-  width: 8rem;
+  width: 10rem;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -70,6 +71,7 @@ a {
 }
 
 #nav .title-warp {
+  width: 100%;
   padding: 0rem 1rem;
   margin: 0.5rem 0.2rem 0 0.2rem;
   border-bottom: white 1px solid;
@@ -79,6 +81,7 @@ a {
     margin-bottom: 0.5rem;
     height: 0px;
     overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.893, 0.005, 0.54, 0.975);
   }
 
   & .menu-warp a {
@@ -108,8 +111,11 @@ a {
 }
 
 #view {
+  width: 100%;
   height: 100%;
   overflow: auto;
   padding: 0.5rem 1rem;
+  word-break: break-all;
+  white-space: pre-line;
 }
 </style>
