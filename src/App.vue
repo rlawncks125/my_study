@@ -62,6 +62,14 @@
   margin: 0;
   padding: 0;
 }
+
+html {
+  // 모바일
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+}
+
 a {
   all: unset;
   color: black;
@@ -75,6 +83,7 @@ a {
 }
 
 #nav {
+  flex: none;
   width: 10rem;
   height: 100%;
   overflow: auto;
@@ -92,51 +101,53 @@ a {
 }
 
 #nav .title-warp {
-  width: 100%;
   padding: 0rem 1rem;
-  margin: 0.5rem 0.2rem 0 0.2rem;
+  margin: 0.5rem 1rem 0;
   border-bottom: white 1px solid;
 
   & .menu-warp {
+    height: 0px;
     padding: 1rem 0 0 0.5rem;
     margin-bottom: 0.5rem;
-    height: 0px;
     overflow: hidden;
     transition: height 0.18s cubic-bezier(0.669, 0.443, 0.85, 0.975);
-    // transition: height 0.2s cubic-bezier(0.367, 0.2277, 0.85, 0.975);
+
+    & a {
+      color: gray;
+      display: block;
+      margin-bottom: 0.1rem;
+    }
   }
 
-  & .menu-warp a {
-    color: gray;
-    display: block;
-    margin-bottom: 0.1rem;
+  & input[type="checkbox"] {
+    display: none;
+
+    & + label {
+      color: green;
+      cursor: pointer;
+    }
+  }
+
+  & input[type="checkbox"]:checked {
+    & + label {
+      color: black;
+    }
+
+    & ~ .menu-warp {
+      height: 100%;
+    }
   }
 }
 
-#nav .title-warp input[type="checkbox"] {
-  display: none;
-
-  & + label {
-    color: green;
-    cursor: pointer;
-  }
-}
-
-#nav .title-warp input[type="checkbox"]:checked {
-  & + label {
-    color: black;
-  }
-
-  & ~ .menu-warp {
-    height: 100%;
-  }
-}
+// flex
+// flex : 0 0 auto ( none ) = width와 height속성에 정해지고 크기가 안변함
+// flex : 0 1 auto ( initial ) = width와 height속성에 정해지고 남은 공간을 채우기위해 늘어나진 않지만 줄어 들수도 있음
+// flex : 1 1 auto ( auto ) = 컨테이너에 맞춰 크기가 줄어들기도하고 , 남은공간을 채우기위해 늘어나기도 함
 
 #view {
-  width: 100%;
-  height: 100%;
+  flex: auto;
   overflow: auto;
-  padding: 0 1rem;
+  padding: 0 1rem 4rem;
   // 줄바꿈
   word-break: break-all;
   white-space: pre-line;
