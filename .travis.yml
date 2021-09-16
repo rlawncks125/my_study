@@ -11,6 +11,6 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: dist
+  fqdn: "study.kimjuchan97.site"
   on:
     branch: master
-    fqdn: "study.kimjuchan97.site"
