@@ -35,10 +35,7 @@ export default defineComponent({
      name,
      price,
      title,
-     });
-     
-
-    
+     });        
      
      `);
 
