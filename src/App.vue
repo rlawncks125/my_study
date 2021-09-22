@@ -22,27 +22,7 @@
         <label for="check4">CSS</label>
         <div class="menu-warp">
           <router-link to="/CSS">CSS</router-link>
-          <router-link to="/vue">Vue</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
-          <router-link to="/CSS">CSS</router-link>
+          <router-link to="/CSS선택자">CSS선택자</router-link>
         </div>
       </div>
       <div class="title-warp">
@@ -53,7 +33,9 @@
         </div>
       </div>
     </div>
-    <router-view id="view" />
+    <div id="view">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -90,12 +72,12 @@ a {
   display: flex;
   flex-direction: column;
   align-content: center;
-  background: pink;
+  background: rgb(0, 3, 11);
 
   & .go-home {
     text-align: center;
     padding: 1rem;
-    color: purple;
+    color: darkslateblue;
     border-bottom: white 1px solid;
   }
 }
@@ -113,7 +95,7 @@ a {
     transition: height 0.18s cubic-bezier(0.669, 0.443, 0.85, 0.975);
 
     & a {
-      color: gray;
+      color: goldenrod;
       display: block;
       margin-bottom: 0.1rem;
     }
@@ -123,14 +105,14 @@ a {
     display: none;
 
     & + label {
-      color: green;
+      color: darksalmon;
       cursor: pointer;
     }
   }
 
   & input[type="checkbox"]:checked {
     & + label {
-      color: black;
+      color: hotpink;
     }
 
     & ~ .menu-warp {
@@ -147,9 +129,23 @@ a {
 #view {
   flex: auto;
   overflow: auto;
+  margin-top: 1rem;
   padding: 0 1rem 4rem;
   // 줄바꿈
   word-break: break-all;
   white-space: pre-line;
+}
+
+.view-warp {
+  & p {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+
+    &.title {
+      margin-top: 2rem;
+      font-size: 2rem;
+    }
+  }
 }
 </style>

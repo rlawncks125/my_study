@@ -20,21 +20,28 @@ const routes: Array<RouteRecordRaw> = [
     path: "/vue",
     name: "vue",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/VUE-views/Vue.vue"),
+      import(/* webpackChunkName: "Vue" */ "../views/VUE-views/Vue.vue"),
   },
   {
     path: "/HTML",
     name: "HTML",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/HTML-views/HTML.vue"),
+      import(/* webpackChunkName: "HTML" */ "../views/HTML-views/HTML.vue"),
   },
   {
     path: "/CSS",
     name: "CSS",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/CSS-views/CSS.vue"),
+      import(/* webpackChunkName: "CSS" */ "../views/CSS-views/CSS.vue"),
   },
   {
+    path: "/CSS선택자",
+    name: "CSS선택자",
+    component: () =>
+      import(/* webpackChunkName: "CSS" */ "../views/CSS-views/CSS선택자.vue"),
+  },
+  {
+    // 다른 경로로 접근하면 / 주소로 리다이렉트
     path: "/:pathMatch(.*)*",
     redirect: "/",
   },
