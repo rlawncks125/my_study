@@ -49,7 +49,7 @@
 }
 
 @mixin mobile() {
-  @media (max-width: 480px) {
+  @media screen and (max-width: 718px) {
     @content();
   }
 }
