@@ -7,5 +7,5 @@ import "./registerServiceWorker";
 createApp(App).use(store).use(router).mount("#app");
 
 // pwa
-// vue add pwa
-// public 폴더 >> mainfest.json 설정 파일일 만들기
+// vue add pwa >> registerServiceWorker.ts 파일만들어지고 main.ts에 import됌
+// public 폴더 >> mainfest.json 설정 파일 만들기
