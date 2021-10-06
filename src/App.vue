@@ -92,6 +92,10 @@ a {
     padding: 1rem;
     color: darkslateblue;
     border-bottom: white 1px solid;
+
+    @include mobile() {
+      padding: 3rem 1rem;
+    }
   }
 
   & .toggle,
@@ -101,17 +105,26 @@ a {
 
   @include mobile() {
     width: 100vw;
+    max-height: 100vh;
     position: sticky;
     top: 0px;
 
+    // 스크롤바 없애기
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    //
+
     & .go-home {
-      padding: 1rem 2rem;
+      padding: 1.5rem 2rem;
       text-align: left;
     }
 
     & .toggle {
       display: block;
       color: white;
+      padding: 0.5rem 0.5rem;
       position: absolute;
       top: 10px;
       right: 10px;
