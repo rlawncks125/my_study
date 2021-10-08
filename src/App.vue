@@ -17,6 +17,14 @@
           <label for="check3">HTML</label>
           <div class="menu-warp">
             <router-link to="/HTML">HTML</router-link>
+            <router-link to="/기본구조">기본구조</router-link>
+            <router-link to="/시멘틱태그">시멘틱태그</router-link>
+            <router-link to="/HTML_텍스트관련">텍스트관련</router-link>
+            <router-link to="/HTML_목록관련">목록관련</router-link>
+            <router-link to="/HTML_링크_이미지_관련">링크_이미지</router-link>
+            <router-link to="/HTML_테이블관련">테이블관련</router-link>
+            <router-link to="/HTML_폼관련">폼관련</router-link>
+            <router-link to="/HTML_멀티미디어관련">멀티미디어</router-link>
           </div>
         </div>
         <div class="title-warp">
@@ -43,19 +51,17 @@
 </template>
 
 <style lang="scss">
+@import "/scss/import/media.scss";
+@import "/scss/import/codeCovert.scss";
+
 * {
   margin: 0;
   padding: 0;
 }
 
-@mixin mobile() {
-  @media screen and (max-width: 718px) {
-    @content();
-  }
-}
 html {
   // 모바일
-  @include mobile() {
+  @include md() {
     font-size: 15px;
   }
 }
@@ -71,7 +77,7 @@ a {
   justify-content: space-between;
   height: 100vh;
 
-  @include mobile() {
+  @include md() {
     display: block;
     height: 100%;
   }
@@ -93,7 +99,7 @@ a {
     color: darkslateblue;
     border-bottom: white 1px solid;
 
-    @include mobile() {
+    @include md() {
       padding: 3rem 1rem;
     }
   }
@@ -103,7 +109,7 @@ a {
     display: none;
   }
 
-  @include mobile() {
+  @include md() {
     width: 100vw;
     max-height: 100vh;
     position: sticky;
@@ -156,11 +162,12 @@ a {
   border-bottom: white 1px solid;
 
   & .menu-warp {
-    height: 0px;
+    height: 100%;
+    max-height: 0px;
     padding: 1rem 0 0 0.5rem;
     margin-bottom: 0.5rem;
     overflow: hidden;
-    transition: height 0.18s cubic-bezier(0.669, 0.443, 0.85, 0.975);
+    transition: max-height 0.4s cubic-bezier(0.669, 0.443, 0.85, 0.975);
 
     & a {
       color: goldenrod;
@@ -187,7 +194,7 @@ a {
     }
 
     & ~ .menu-warp {
-      height: 100%;
+      max-height: 100vh;
     }
   }
 }

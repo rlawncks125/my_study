@@ -1,0 +1,33 @@
+$screen: (
+  s: 100px,
+  sm: 450px,
+  md: 718px,
+  la: 980px,
+  max: 1240px,
+);
+
+@mixin s {
+  @media (max-width: map-get($screen, s)) {
+    @content();
+  }
+}
+@mixin sm {
+  @media (max-width: map-get($screen, sm)) {
+    @content();
+  }
+}
+@mixin md {
+  @media (max-width: map-get($screen, md)) {
+    @content();
+  }
+}
+@mixin la {
+  @media (max-width: map-get($screen, la)) {
+    @content();
+  }
+}
+@mixin max {
+  @media (max-width: map-get($screen, max)) {
+    @content();
+  }
+}

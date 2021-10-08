@@ -29,6 +29,64 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "HTML" */ "../views/HTML-views/HTML.vue"),
   },
   {
+    path: "/기본구조",
+    name: "기본구조",
+    component: () =>
+      import(/* webpackChunkName: "HTML" */ "../views/HTML-views/기본구조.vue"),
+  },
+  {
+    path: "/HTML_텍스트관련",
+    name: "텍스트관련",
+    component: () =>
+      import(
+        /* webpackChunkName: "HTML" */ "../views/HTML-views/텍스트관련.vue"
+      ),
+  },
+  {
+    path: "/HTML_목록관련",
+    name: "목록관련",
+    component: () =>
+      import(/* webpackChunkName: "HTML" */ "../views/HTML-views/목록관련.vue"),
+  },
+  {
+    path: "/HTML_링크_이미지_관련",
+    name: "링크_이미지_관련",
+    component: () =>
+      import(
+        /* webpackChunkName: "HTML" */ "../views/HTML-views/링크_이미지_관련.vue"
+      ),
+  },
+  {
+    path: "/HTML_테이블관련",
+    name: "테이블관련",
+    component: () =>
+      import(
+        /* webpackChunkName: "HTML" */ "../views/HTML-views/테이블관련.vue"
+      ),
+  },
+  {
+    path: "/HTML_폼관련",
+    name: "폼관련",
+    component: () =>
+      import(/* webpackChunkName: "HTML" */ "../views/HTML-views/폼관련.vue"),
+  },
+  {
+    path: "/HTML_멀티미디어관련",
+    name: "멀티미디어관련",
+    component: () =>
+      import(
+        /* webpackChunkName: "HTML" */ "../views/HTML-views/멀티미디어관련.vue"
+      ),
+  },
+  {
+    path: "/시멘틱태그",
+    name: "시멘틱태그",
+    component: () =>
+      import(
+        /* webpackChunkName: "HTML" */ "../views/HTML-views/시멘틱_태그.vue"
+      ),
+  },
+  {
     path: "/CSS",
     name: "CSS",
     component: () =>
