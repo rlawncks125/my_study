@@ -5,11 +5,13 @@ import store from "./store";
 import "./registerServiceWorker";
 
 import componentCodeConvert from "./components/codeConvert.vue";
+import Diif_Code from "./components/Diff-Code.vue";
 
 createApp(App)
   .use(store)
   .use(router)
   .component("code-convert", componentCodeConvert)
+  .component("diff-code", Diif_Code)
   .mount("#app");
 
 // pwa

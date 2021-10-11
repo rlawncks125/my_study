@@ -32,15 +32,42 @@
           <label for="check4">CSS</label>
           <div class="menu-warp">
             <router-link to="/CSS">CSS</router-link>
+            <router-link to="/root의사클래스">root의사클래스</router-link>
+            <router-link to="/CSS함수">CSS함수</router-link>
             <router-link to="/CSS선택자">CSS선택자</router-link>
           </div>
         </div>
         <div class="title-warp">
           <input type="checkbox" id="check5" />
-          <label for="check5">Vue</label>
+          <label for="check5">SCSS</label>
+          <div class="menu-warp">
+            <router-link to="/media쿼리">Media쿼리</router-link>
+            <router-link to="/SCSS데이터">데이터</router-link>
+            <router-link to="/중첩">중첩</router-link>
+            <router-link to="/라이브러리">라이브러리 가져오기</router-link>
+            <router-link to="/mixins">Mixins</router-link>
+            <router-link to="/Extend">Extend</router-link>
+            <router-link to="/Function">Function</router-link>
+            <router-link to="/조건문_반복문">조건문_반복문</router-link>
+            <router-link to="/SCSS_내장함수">내장함수</router-link>
+          </div>
+        </div>
+        <div class="title-warp">
+          <input type="checkbox" id="check6" />
+          <label for="check6">Vue</label>
           <div class="menu-warp">
             <router-link to="/vue">Vue</router-link>
           </div>
+        </div>
+        <div class="title-warp">
+          <input type="checkbox" id="check7" />
+          <label for="check7">Vuex</label>
+          <div class="menu-warp"></div>
+        </div>
+        <div class="title-warp">
+          <input type="checkbox" id="check8" />
+          <label for="check8">Vue-Router</label>
+          <div class="menu-warp"></div>
         </div>
       </ul>
     </div>
@@ -173,6 +200,12 @@ a {
       color: goldenrod;
       display: block;
       margin-bottom: 0.1rem;
+
+      // ...처리
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 

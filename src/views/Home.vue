@@ -1,12 +1,15 @@
 <template>
-  <div class="home">홈</div>
+  <div>HOEM</div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { defineComponent } from "vue";
 
-@Options({
-  components: {},
-})
-export default class Home extends Vue {}
+export default defineComponent({
+  setup() {
+    return {};
+  },
+});
 </script>
+
+<style scoped></style>

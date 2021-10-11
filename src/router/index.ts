@@ -23,6 +23,12 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "Vue" */ "../views/VUE-views/Vue.vue"),
   },
   {
+    path: "/vue/:id",
+    name: "vueId",
+    component: () =>
+      import(/* webpackChunkName: "Vue" */ "../views/VUE-views/Vue.vue"),
+  },
+  {
     path: "/HTML",
     name: "HTML",
     component: () =>
@@ -93,10 +99,70 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "CSS" */ "../views/CSS-views/CSS.vue"),
   },
   {
+    path: "/root의사클래스",
+    name: "root의사클래스",
+    component: () => import("../views/CSS-views/root의사클래스.vue"),
+  },
+  {
+    path: "/css선택자",
+    name: "css선택자",
+    component: () => import("../views/CSS-views/CSS선택자.vue"),
+  },
+  {
+    path: "/CSS함수",
+    name: "CSS함수",
+    component: () => import("../views/CSS-views/CSS함수.vue"),
+  },
+  {
     path: "/CSS선택자",
     name: "CSS선택자",
     component: () =>
       import(/* webpackChunkName: "CSS" */ "../views/CSS-views/CSS선택자.vue"),
+  },
+  {
+    path: "/media쿼리",
+    name: "media쿼리",
+    component: () => import("../views/SCSS-views/media쿼리.vue"),
+  },
+  {
+    path: "/SCSS데이터",
+    name: "SCSS데이터",
+    component: () => import("../views/SCSS-views/데이터.vue"),
+  },
+  {
+    path: "/중첩",
+    name: "중첩",
+    component: () => import("../views/SCSS-views/중첩.vue"),
+  },
+  {
+    path: "/라이브러리",
+    name: "라이브러리",
+    component: () => import("../views/SCSS-views/라이브러리.vue"),
+  },
+  {
+    path: "/Mixins",
+    name: "Mixins",
+    component: () => import("../views/SCSS-views/Mixins.vue"),
+  },
+  {
+    path: "/Extend",
+    name: "Extend",
+    component: () => import("../views/SCSS-views/Extend.vue"),
+  },
+  {
+    path: "/Function",
+    name: "Function",
+    component: () => import("../views/SCSS-views/Function.vue"),
+  },
+  {
+    path: "/조건문_반복문",
+    name: "조건문_반복문",
+    component: () => import("../views/SCSS-views/조건문_반복문.vue"),
+  },
+  {
+    path: "/SCSS_내장함수",
+    name: "SCSS_내장함수",
+    component: () => import("../views/SCSS-views/내장함수.vue"),
   },
   {
     // 다른 경로로 접근하면 / 주소로 리다이렉트
