@@ -165,6 +165,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/SCSS-views/내장함수.vue"),
   },
   {
+    path: "/classStyle",
+    name: "classStyle",
+    component: () => import("../views/VUE-views/Class_Style_바인딩.vue"),
+  },
+  {
+    path: "/템플릿_문법",
+    name: "템플릿_문법",
+    component: () => import("../views/VUE-views/템플릿_문법.vue"),
+  },
+  {
     // 다른 경로로 접근하면 / 주소로 리다이렉트
     path: "/:pathMatch(.*)*",
     redirect: "/",

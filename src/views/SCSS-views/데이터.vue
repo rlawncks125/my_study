@@ -5,7 +5,9 @@
   <div v-for="item in items" :key="item.id">
     <code-convert>
       <template #title>{{ item.title }} </template>
-      <template #content>{{ item.content }}</template>
+      <template v-if="item.content" #content>
+        <div v-html="item.content" />
+      </template>
       <template #code>{{ item.code }} </template>
     </code-convert>
   </div>

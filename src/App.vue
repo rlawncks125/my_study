@@ -57,6 +57,8 @@
           <label for="check6">Vue</label>
           <div class="menu-warp">
             <router-link to="/vue">Vue</router-link>
+            <router-link to="/템플릿_문법">템플릿_문법</router-link>
+            <router-link to="/classStyle">class_style_바인딩</router-link>
           </div>
         </div>
         <div class="title-warp">
@@ -112,7 +114,7 @@ a {
 
 #nav {
   flex: none;
-  width: 10rem;
+  width: 14rem;
   height: 100%;
   overflow: auto;
   display: flex;
@@ -125,10 +127,6 @@ a {
     padding: 1rem;
     color: darkslateblue;
     border-bottom: white 1px solid;
-
-    @include md() {
-      padding: 3rem 1rem;
-    }
   }
 
   & .toggle,
@@ -150,17 +148,17 @@ a {
     //
 
     & .go-home {
-      padding: 1.5rem 2rem;
+      padding: 2.4rem 2rem;
       text-align: left;
     }
 
     & .toggle {
       display: block;
       color: white;
-      padding: 0.5rem 0.5rem;
+      padding: 1rem 1rem;
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: 1rem;
+      right: 1rem;
       border: 1px solid pink;
       cursor: pointer;
     }
@@ -173,7 +171,7 @@ a {
 
     & .toggle-checkbox:checked {
       & ~ label {
-        color: blue;
+        color: goldenrod;
       }
 
       & ~ .organize {
