@@ -58,18 +58,32 @@
           <div class="menu-warp">
             <router-link to="/vue">Vue</router-link>
             <router-link to="/템플릿_문법">템플릿_문법</router-link>
-            <router-link to="/classStyle">class_style_바인딩</router-link>
+            <router-link to="/classStyle">Class_Style_바인딩</router-link>
+            <router-link to="/DOM접근">DOM접근</router-link>
           </div>
         </div>
         <div class="title-warp">
           <input type="checkbox" id="check7" />
           <label for="check7">Vuex</label>
-          <div class="menu-warp"></div>
+          <div class="menu-warp">
+            <router-link to="/vuex/파일구조">파일 구조</router-link>
+            <router-link to="/vuex/모듈정의">모듈 정의</router-link>
+            <router-link to="/vuex/호출방법">호출 방법</router-link>
+          </div>
         </div>
         <div class="title-warp">
           <input type="checkbox" id="check8" />
           <label for="check8">Vue-Router</label>
           <div class="menu-warp"></div>
+        </div>
+        <div class="title-warp">
+          <input type="checkbox" id="check9" />
+          <label for="check9">기타</label>
+          <div class="menu-warp">
+            <router-link to="/함수_Promise_리턴값"
+              >함수_Promise_리턴값</router-link
+            >
+          </div>
         </div>
       </ul>
     </div>

@@ -89,7 +89,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "시멘틱태그",
     component: () =>
       import(
-        /* webpackChunkName: "HTML" */ "../views/HTML-views/시멘틱_태그.vue"
+        /* webpackChunkName: "시멘틱" */ "../views/HTML-views/시멘틱_태그.vue"
       ),
   },
   {
@@ -175,7 +175,31 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/VUE-views/템플릿_문법.vue"),
   },
   {
-    // 다른 경로로 접근하면 / 주소로 리다이렉트
+    path: "/DOM접근",
+    name: "DOM접근",
+    component: () => import("../views/VUE-views/DOM접근.vue"),
+  },
+  {
+    path: "/vuex/모듈정의",
+    name: "모듈정의s",
+    component: () => import("@/views/VUEX-view/모듈정의.vue"),
+  },
+  {
+    path: "/vuex/파일구조",
+    name: "파일구조",
+    component: () => import("@/views/VUEX-view/파일구조.vue"),
+  },
+  {
+    path: "/vuex/호출방법",
+    name: "호출방법",
+    component: () => import("@/views/VUEX-view/호출방법.vue"),
+  },
+  {
+    path: "/함수_Promise_리턴값",
+    name: "함수_Promise_리턴값",
+    component: () => import("@/views/기타/함수_Promise_리턴값.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     redirect: "/",
   },

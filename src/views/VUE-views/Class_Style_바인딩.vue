@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs } from "vue";
+import { defineComponent, reactive } from "vue";
 import { codeProcess } from "@/components/codeConvert.vue";
 
 export default defineComponent({
