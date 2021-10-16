@@ -1,5 +1,5 @@
 <template>
-  <p>AAA</p>
+  <p>actions test</p>
   <div>리턴값으로 함수호출</div>
   <input type="text" v-model.number="s.setX" />
   <input type="text" v-model.number="s.setY" />
