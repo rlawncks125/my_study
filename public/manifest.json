@@ -4,6 +4,6 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "PWA 적용 테스트",
-  "short_name": "테스트 입니다."
+  "name": "대충 정리한 사이트",
+  "short_name": "김주찬 Site"
 }

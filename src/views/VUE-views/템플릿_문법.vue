@@ -44,6 +44,9 @@
         {{ js.message.split("").reverse().join("") }}
       </p>
       <div :id="'list-' + js.name"></div>
+      <button @click="js.boolean = !js.boolean">
+        값 할당 : {{ js.boolean }}
+      </button>
     </template>
     <template #code>{{ JavaScrpit_표현식.code }} </template>
   </code-convert>
@@ -72,6 +75,7 @@ export default defineComponent({
         ok: true,
         message: "안녕 하세요 템플릿 문법 입니다.",
         name: "키오스크",
+        boolean: true,
       },
       attrName: "id",
       attrNameValue: "동적전달_Id",
@@ -114,13 +118,15 @@ export default defineComponent({
         {{ js.ok ? "yes" : "no" }}
         {{ js.message.split(" ").reverse().join(" ") }}
       <div :id = "'list-' + js.name"></div>
-      
+      <button @click="js.boolean = !js.boolean">값 할당 : {{ js.boolean }}</button>
+
     //   데이터
      js: {
         /ttnumber: 22,
         /ttok: true,
         /ttmessage: "안녕 하세요 템플릿 문법 입니다.",
         /ttname: "키오스크",
+        /ttboolean: true,
       },
       `),
     });
