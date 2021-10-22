@@ -91,7 +91,7 @@ interface IState{
 export const module :Module<IState, rootState> = {
 	// 호출할떄 [moduleName/호출] 로 호출
 	// moduleName 은 modules에 정의된 모듈이름 따라감
-  namespaced: true, 
+  // namespaced: true, 
   // Data 와 같은 역할
 	state: { 
 		/ttname : "모듈"
@@ -138,7 +138,7 @@ const actions: ActionTree<IState, rootState> = {
 export const module: Module<IState, rootState> = {
 	// 호출할떄 [moduleName/호출] 로 호출
 	// moduleName 은 modules에 정의된 모듈이름 따라감
-  namespaced: true,
+  // namespaced: true,
   state,
   getters,
   mutations,

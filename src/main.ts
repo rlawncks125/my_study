@@ -1,14 +1,14 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import { store, key } from "./store";
 import "./registerServiceWorker";
 
 import componentCodeConvert from "./components/codeConvert.vue";
 import Diif_Code from "./components/Diff-Code.vue";
 
 createApp(App)
-  .use(store)
+  .use(store, key)
   .use(router)
   .component("code-convert", componentCodeConvert)
   .component("diff-code", Diif_Code)

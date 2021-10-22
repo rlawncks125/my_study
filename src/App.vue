@@ -68,7 +68,7 @@
           <div class="menu-warp">
             <router-link to="/vuex/파일구조">파일 구조</router-link>
             <router-link to="/vuex/모듈정의">모듈 정의</router-link>
-            <router-link to="/vuex/호출방법">호출 방법</router-link>
+            <router-link to="/vuex/파일정리">파일 정리</router-link>
           </div>
         </div>
         <div class="title-warp">

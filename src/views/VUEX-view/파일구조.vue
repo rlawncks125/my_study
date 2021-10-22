@@ -14,6 +14,9 @@
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 import { codeProcess } from "@/components/codeConvert.vue";
+import { useStore } from "@/store/index";
+import { Base } from "@/store/modules/base";
+import { BaseActionsTypes } from "@/store/actions";
 
 export default defineComponent({
   setup() {
@@ -42,6 +45,14 @@ export default defineComponent({
      `),
       },
     ]);
+
+    const store = useStore();
+
+    store.dispatch(
+      BaseActionsTypes.ACTIONS_BASE,
+      new Base().actions({ name: "actions", url: "http" })
+    );
+
     return { items };
   },
 });

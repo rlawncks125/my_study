@@ -190,9 +190,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/VUEX-view/파일구조.vue"),
   },
   {
-    path: "/vuex/호출방법",
-    name: "호출방법",
-    component: () => import("@/views/VUEX-view/호출방법.vue"),
+    path: "/vuex/파일정리",
+    name: "파일정리",
+    component: () => import("@/views/VUEX-view/파일정리.vue"),
   },
   {
     path: "/함수_Promise_리턴값",
