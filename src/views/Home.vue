@@ -1,14 +1,23 @@
 <template>
   <div>HOME</div>
   <label for="text">문자을 입력하세요</label>
-  <input type="text" name="text" v-model="textModel" />
+  <input
+    type="text"
+    name="text"
+    @input="
+      (e) => {
+        textModel = e.target.value;
+      }
+    "
+    :value="textModel"
+  />
   <br />
   <label for="text">Watch X 입력하세요</label>
   <input type="text" name="text" v-model="twoModel" />
   <br />
-  <span class="텍스트넓이감지" ref="텍스트넓이감지" :style="spanStyle">{{
-    textModel
-  }}</span>
+  <span class="텍스트넓이감지" ref="텍스트넓이감지" :style="spanStyle">
+    {{ textModel }}
+  </span>
 </template>
 
 <script lang="ts">
@@ -30,10 +39,12 @@ export default defineComponent({
       // 배열 혹은 Object의 특정 값만 감지하고싶을떄
       () => data.textModel,
       () => {
-        data.spanStyle.width = 텍스트넓이감지.value?.offsetWidth + "px";
-        console.log("호출");
+        setTimeout(() => {
+          data.spanStyle.width = 텍스트넓이감지.value?.offsetWidth + "px";
+        }, 0);
       }
     );
+
     return { 텍스트넓이감지, ...toRefs(data) };
   },
 });

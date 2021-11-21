@@ -45,38 +45,44 @@ export default defineComponent({
       {
         title: "Mixins을 사용한 미디어쿼리",
         code: codeProcess(`$screen: (
-          /tts: 100px,
-          /ttsm: 450px,
-          /ttmd: 718px,
-          /ttla: 980px,
-          /ttmax: 1240px,
-        );
-        
-        @mixin s {
-          /tt@media (max-width: map-get($screen, s)) {
-          /tt/tt@content();
-          /tt}
-        }
-        @mixin sm {
-          /tt@media (max-width: map-get($screen, sm)) {
-          /tt/tt@content();
-          /tt}
-        }
-        @mixin md {
-          /tt@media (max-width: map-get($screen, md)) {
-          /tt/tt@content();
-          /tt}
-        }
-        @mixin la {
-          /tt@media (max-width: map-get($screen, la)) {
-          /tt/tt@content();
-          /tt}
-        }
-        @mixin max {
-          /tt@media (max-width: map-get($screen, max)) {
-          /tt/tt@content();
-          /tt}
-        }`),
+  /ttxs: 475px,
+  /ttsm: 640px,
+  /ttmd: 768px,
+  /ttlg: 1024px,
+  /ttxl: 1280px,
+  /ttxxl: 1536px,
+);
+
+@mixin xs {
+  /tt----@media (min-width: 0) and (max-width: map-get($screen,xs)) {
+    /tt/tt@content();
+  /tt}
+}
+@mixin sm {
+  /tt----@media (min-width: calc(map-get($screen,xs) + 1px)) and (max-width: map-get($screen,sm)) {
+    /tt/tt@content();
+  /tt}
+}
+@mixin md {
+  /tt----@media (min-width: calc(map-get($screen,sm) + 1px)) and (max-width: map-get($screen,md)) {
+    /tt/tt@content();
+  /tt}
+}
+@mixin lg {
+  /tt----@media (min-width: calc(map-get($screen,md) + 1px)) and (max-width: map-get($screen,lg)) {
+   /tt/tt@content();
+  /tt}
+}
+@mixin xl {
+  /tt----@media (min-width: calc(map-get($screen,lg) + 1px)) and (max-width: map-get($screen,xl)) {
+    /tt/tt@content();
+  /tt}
+}
+@mixin xxl {
+  /tt----@media (min-width: calc(map-get($screen,xl) + 1px)) {
+    /tt/tt@content();
+  /tt}
+}`),
       },
       {
         title: "Mixins 사용 = include() ",
@@ -89,7 +95,7 @@ export default defineComponent({
             // ex)
             .box {
                 /ttdisplay : none;
-                /tt@icnlude(md){
+                /tt@icnlude md(){
                     /tt/ttdisplay: "block";
                 /tt}
             }
