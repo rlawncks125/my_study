@@ -24,6 +24,14 @@ jobs:
           node-version: 14
           cache: "npm"
 
+      # 배포 .env 파일 생성 & secrets를 이용한 env값추가
+      - name: vue depoly product Create .env file
+        run: |
+          echo "VUE_APP_TEST=$VUE_APP_TEST" >> .env.production
+
+        env:
+          VUE_APP_TEST: "env 파일 Test"
+
       # 패키지 설치
       - name: 패키지 설치
         run: npm install

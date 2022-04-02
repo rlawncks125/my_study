@@ -2,6 +2,7 @@
   <div>HOME</div>
   <p>actions githubpages 배포 확인</p>
   <p>정리 홈페이지 리메이크</p>
+  <p>{{ envTest }}</p>
   <label for="text">문자을 입력하세요</label>
   <input
     type="text"
@@ -37,6 +38,8 @@ export default defineComponent({
       twoModel: "",
     });
 
+    const envTest = process.env.VUE_APP_TEST || "env 적용안됌";
+
     watch(
       // 배열 혹은 Object의 특정 값만 감지하고싶을떄
       () => data.textModel,
@@ -47,7 +50,7 @@ export default defineComponent({
       }
     );
 
-    return { 텍스트넓이감지, ...toRefs(data) };
+    return { 텍스트넓이감지, ...toRefs(data), envTest };
   },
 });
 </script>
