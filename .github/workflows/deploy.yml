@@ -28,9 +28,11 @@ jobs:
       - name: vue depoly product Create .env file
         run: |
           echo "VUE_APP_TEST=$VUE_APP_TEST" >> .env.production
+          echo "VUE_APP_PORTFOLIO=$VUE_APP_PORTFOLIO" >> .env.production
 
         env:
           VUE_APP_TEST: "env 파일 Test"
+          VUE_APP_PORTFOLIO: ${{ secrets.PORTFOLIO }}
 
       # 패키지 설치
       - name: 패키지 설치

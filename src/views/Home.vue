@@ -2,7 +2,11 @@
   <div>HOME</div>
   <p>actions githubpages 배포 확인</p>
   <p>정리 홈페이지 리메이크</p>
-  <p>{{ envTest }}</p>
+  <p>env 문자열 준값 : {{ envTest }}</p>
+
+  <span>github secerts로 준 페이지 링크 : </span>
+  <a id="Mainpage" :href="envPORTFOLIO" target="_blank">{{ envPORTFOLIO }} </a>
+  <br />
   <label for="text">문자을 입력하세요</label>
   <input
     type="text"
@@ -39,6 +43,7 @@ export default defineComponent({
     });
 
     const envTest = process.env.VUE_APP_TEST || "env 적용안됌";
+    const envPORTFOLIO = process.env.VUE_APP_PORTFOLIO;
 
     watch(
       // 배열 혹은 Object의 특정 값만 감지하고싶을떄
@@ -50,7 +55,7 @@ export default defineComponent({
       }
     );
 
-    return { 텍스트넓이감지, ...toRefs(data), envTest };
+    return { 텍스트넓이감지, ...toRefs(data), envTest, envPORTFOLIO };
   },
 });
 </script>
