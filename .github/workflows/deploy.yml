@@ -42,7 +42,7 @@ jobs:
           github_token: ${{ secrets.TOKEN }}
           # Set custom domain
           cname:
-            https://study.kimjuchan97.site
+            study.kimjuchan97.site
             # Set a target branch for deployment.
           publish_branch: gh-pages
           # Set an input directory for deployment.

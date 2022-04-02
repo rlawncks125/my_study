@@ -1,5 +1,7 @@
 <template>
   <div>HOME</div>
+  <p>actions githubpages 배포 확인</p>
+  <p>정리 홈페이지 리메이크</p>
   <label for="text">문자을 입력하세요</label>
   <input
     type="text"

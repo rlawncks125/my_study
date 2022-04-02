@@ -1,6 +1,4 @@
 <template>
-  <p>actions 배포 변경 확인</p>
-  <p>actions test</p>
   <div>리턴값으로 함수호출</div>
   <input type="text" v-model.number="s.setX" />
   <input type="text" v-model.number="s.setY" />
