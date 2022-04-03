@@ -25,12 +25,24 @@
   <span class="텍스트넓이감지" ref="텍스트넓이감지" :style="spanStyle">
     {{ textModel }}
   </span>
+
+  <template v-for="item in items" :key="item.id">
+    <code-test :codeText="item.code">
+      <template #title>{{ item.title }} </template>
+    </code-test>
+  </template>
 </template>
 
 <script lang="ts">
+import codeTest, {
+  codeProcess,
+  htmlToCode,
+  jsToCode,
+} from "@/components/NewCodeConvert.vue";
 import { defineComponent, reactive, ref, toRefs, watch } from "vue";
 
 export default defineComponent({
+  components: { codeTest },
   setup() {
     const 텍스트넓이감지 = ref<HTMLSpanElement>();
     const data = reactive({
@@ -45,6 +57,15 @@ export default defineComponent({
     const envTest = process.env.VUE_APP_TEST || "env 적용안됌";
     const envPORTFOLIO = process.env.VUE_APP_PORTFOLIO;
 
+    const items = reactive([
+      {
+        title: "코드 테스트",
+        code: codeProcess(
+          [htmlToCode(`//기본코드w`), jsToCode(`jscode`)].join(" <br /> ")
+        ),
+      },
+    ]);
+
     watch(
       // 배열 혹은 Object의 특정 값만 감지하고싶을떄
       () => data.textModel,
@@ -55,7 +76,7 @@ export default defineComponent({
       }
     );
 
-    return { 텍스트넓이감지, ...toRefs(data), envTest, envPORTFOLIO };
+    return { items, 텍스트넓이감지, ...toRefs(data), envTest, envPORTFOLIO };
   },
 });
 </script>
