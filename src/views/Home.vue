@@ -35,7 +35,8 @@
 
 <script lang="ts">
 import codeTest, {
-  codeProcess,
+  Char_TAB,
+  cssToCode,
   htmlToCode,
   jsToCode,
 } from "@/components/NewCodeConvert.vue";
@@ -60,9 +61,20 @@ export default defineComponent({
     const items = reactive([
       {
         title: "코드 테스트",
-        code: codeProcess(
-          [htmlToCode(`//기본코드w`), jsToCode(`jscode`)].join(" <br /> ")
-        ),
+        code: [
+          htmlToCode(`// html
+        기본코드w
+        <h1>h1h1</h1>
+        ${Char_TAB}<p id='aw'>ad</p>
+        ${Char_TAB}${Char_TAB}<span id='asd'>ad</span>        
+        `),
+          cssToCode(`// css
+        ads
+        `),
+          jsToCode(`// javasciprt
+        ll
+        `),
+        ].join("<br />"),
       },
     ]);
 
