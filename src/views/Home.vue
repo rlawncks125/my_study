@@ -63,13 +63,19 @@ export default defineComponent({
         title: "코드 테스트",
         code: [
           htmlToCode(`// html
-        기본코드w
+        html 테스트
         <h1>h1h1</h1>
         ${Char_TAB}<p id='aw'>ad</p>
         ${Char_TAB}${Char_TAB}<span id='asd'>ad</span>        
         `),
           cssToCode(`// css
-        ads
+        css 테스트
+        div p .ssw #idid {
+        ${Char_TAB}background: url('adw');
+        }
+        ${Char_TAB}div p .sda #ida {
+        ${Char_TAB}${Char_TAB}color : red;
+        }
         `),
           jsToCode(`// javasciprt
         ll

@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { ETag } from "@/assets/CssTag";
 
 export default defineComponent({
   props: {
@@ -44,8 +45,6 @@ export const htmlToCode = (code: string) => {
       text.indexOf("&lt") === 0 &&
       text.lastIndexOf("&gt") === text.length - 3
     ) {
-      console.log("태그 사용", text);
-      console.log(tabString);
       const classLt = "<span class=co-html-lt>&lt</span>";
       const classGt = "<span class=co-html-gt>&gt</span>";
 
@@ -130,6 +129,37 @@ export const cssToCode = (code: string) => {
 
     if (isTrue) return;
     text = refine;
+    text = text.trim();
+
+    // 선택자 & 클래스 선언
+    if (text.lastIndexOf("{") > 0) {
+      const 선택자 = [] as string[];
+
+      const splits = text.split(" ");
+      console.log(splits);
+      splits.forEach((v) => {
+        if (v in ETag) {
+          선택자.push(`<span class='type-tag'>${v}</span>`);
+        } else if (v.includes(".")) {
+          선택자.push(`<span class='type-class'>${v}</span>`);
+        } else if (v.includes("#")) {
+          선택자.push(`<span class='type-id'>${v}</span>`);
+        } else {
+          선택자.push(`<span>${v}</span>`);
+        }
+      });
+      resultText.push(`${tabString}${선택자.join(" ")}`);
+      return;
+    }
+    // 값 선언
+    else if (text.includes(":")) {
+      const splits = text.split(":");
+      const cssValue = `<span class='css-value'>${splits[0]}</span>`;
+      const variable = `<span class='css-variable'>${splits[1]}</span>`;
+
+      resultText.push(`${tabString}${cssValue} : ${variable}`);
+      return;
+    }
 
     resultText.push(text);
   });
