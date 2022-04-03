@@ -78,7 +78,57 @@ export default defineComponent({
         }
         `),
           jsToCode(`// javasciprt
-        ll
+        const var = 1;
+        const var = 'ss';
+        export const var = '44';
+        const var : number = 2;
+        const var = 3 as number;
+        const var = <string>3;
+        const { var1,var2 } = props;
+        const [ var1,var2 ] = func(var);
+
+        const func = () => {
+        ${Char_TAB}return {
+        ${Char_TAB}${Char_TAB}sdas,
+        ${Char_TAB}${Char_TAB}dwppa
+        ${Char_TAB}};
+        }
+        const func : = ( data : any ) => {
+        }
+        const func : boolean = ( data : any , time : string ) : boolean => {
+
+        ${Char_TAB}const ds = 2;
+
+        ${Char_TAB}if(ds === 2) {
+        ${Char_TAB}${Char_TAB}return { 
+        ${Char_TAB}${Char_TAB}ok : true ,
+        ${Char_TAB}${Char_TAB} data : 'ss'
+        ${Char_TAB}${Char_TAB}};
+        ${Char_TAB}}
+
+        ${Char_TAB}return false;        
+
+        }
+
+      
+
+
+        interface Idd {
+          vava : string
+        }
+
+        enum Enns {
+          'r' = 'r'
+        }
+
+        export interface Idd {
+          vava : string
+        }
+        
+        import {ref , toRefs} form "vue";
+        import form 'sss.css';
+
+
         `),
         ].join("<br />"),
       },

@@ -136,7 +136,6 @@ export const cssToCode = (code: string) => {
       const 선택자 = [] as string[];
 
       const splits = text.split(" ");
-      console.log(splits);
       splits.forEach((v) => {
         if (v in ETag) {
           선택자.push(`<span class='type-tag'>${v}</span>`);
@@ -154,10 +153,10 @@ export const cssToCode = (code: string) => {
     // 값 선언
     else if (text.includes(":")) {
       const splits = text.split(":");
-      const cssValue = `<span class='css-value'>${splits[0]}</span>`;
-      const variable = `<span class='css-variable'>${splits[1]}</span>`;
+      const variable = `<span class='css-variable'>${splits[0]}</span>`;
+      const value = `<span class='css-value'>${splits[1]}</span>`;
 
-      resultText.push(`${tabString}${cssValue} : ${variable}`);
+      resultText.push(`${tabString}${variable} : ${value}`);
       return;
     }
 
@@ -167,20 +166,201 @@ export const cssToCode = (code: string) => {
   return resultText.join("<br />");
 };
 
+enum IJsTypes {
+  "interface",
+  "enum",
+  "none",
+  "returnContent",
+}
 // Javasciprt Convert
 export const jsToCode = (code: string) => {
   const resultText = [] as any[];
+  let jsType: keyof typeof IJsTypes = "none";
 
   const splits = splitsCode(code);
 
   splits.forEach((v) => {
     let text;
+    let isExport = "";
     const { isTrue, text: refine, tabString } = commonConvert(v, resultText);
 
     if (isTrue) return;
     text = refine;
+    text = text.trim();
 
-    resultText.push(text);
+    // js 공통 처리 export
+    if (text.includes("export") && text.indexOf("export") === 0) {
+      isExport = `<span class='js-export'>export</span> `;
+      text = text.replace("export", "");
+      text = text.trim();
+    }
+
+    // js 공통 끝('}') 처리
+    if (jsType !== "none" && text.includes("}")) {
+      const typeText = `<span class='js-${jsType}'>${text}</span>`;
+      resultText.push(`${tabString}${typeText}`);
+      jsType = "none";
+      return;
+    }
+
+    // js return 처리
+    if (
+      jsType === "returnContent" ||
+      (text.includes("return") && text.indexOf("return") === 0)
+    ) {
+      // return 첫문단
+      if (text.includes("return")) {
+        const splits = text.split("return");
+        const textReturn = `<span class='js-return'>return</span> `;
+        const content = `<span class='js-returnContent'>${splits[1]}</span>`;
+        resultText.push(`${tabString}${textReturn}${content}`);
+        text.includes(";") ? (jsType = "none") : (jsType = "returnContent");
+
+        return;
+      }
+
+      const content = `<span class='js-returnContent'>${text}</span>`;
+      resultText.push(`${tabString}${content}`);
+      return;
+    }
+
+    // const 처리
+    if (text.includes("const") && text.indexOf("const") === 0) {
+      let putString = "";
+
+      const splits = text.split("const");
+
+      putString += `<span class='js-const'>const</span>`;
+
+      const remain = splits[1];
+      // 익명 함수
+      if (remain.includes("=>")) {
+        const vv = remain.split("=");
+        let variableString = `<span class='js-variable'>${vv[0]}</span>`;
+        let arrowFuncString = `<span class='js-arrowFnc'>${vv[1]}</span>`;
+
+        // 변수 타입 캐스팅
+        if (vv[0].includes(":")) {
+          const s = vv[0].split(":");
+          variableString = [
+            `<span class='js-variable'>${s[0]}</span>`,
+            ":",
+            `<span class='js-variable-type'>${s[1]}</span>`,
+          ].join(" ");
+        }
+
+        // 익명 함수 타입
+        const params = vv[1]
+          .slice(vv[1].indexOf("(") + 1, vv[1].indexOf(")"))
+          .trim();
+        let funcParams = "";
+
+        if (params.length > 0) {
+          const paramsSplits = params.split(",");
+          const refine = paramsSplits.map((v) => {
+            const value = `<span class='js-arrowFnc-variable'>${
+              v.split(":")[0]
+            }</span>`;
+            const type = `<span class='js-arrowFnc-variable-type'>${
+              v.split(":")[1]
+            }</span>`;
+
+            return [value, type].join(":");
+          });
+
+          funcParams = [
+            "<span class='js-arrowFnc'>(</span>",
+            refine.join(","),
+            "<span class='js-arrowFnc'>)</span>",
+          ].join(" ");
+          arrowFuncString = funcParams;
+          // 익명함수 타입 정의 캐스팅
+          if (vv[1].replaceAll(" ", "").includes("):")) {
+            const vvSplits = vv[1].split(":");
+            const type = vvSplits[vvSplits.length - 1];
+            arrowFuncString += [
+              " :",
+              `<span class='js-variable-type'>${type}</span>`,
+            ].join(" ");
+          }
+        }
+
+        putString += [variableString, "=", arrowFuncString, " => ", "{"].join(
+          " "
+        );
+      }
+      // 변수
+      else if (remain.includes("=")) {
+        let remainText = remain;
+        remainText = remainText.replaceAll("<", "&lt");
+        remainText = remainText.replaceAll(">", "&gt");
+
+        const vv = remainText.split("=");
+        let variableString = `<span class='js-variable'>${vv[0]}</span>`;
+        let valueString = `<span class='js-value'>${vv[1]}</span>`;
+
+        // 변수 타입 캐스팅
+        if (vv[0].includes(":")) {
+          const s = vv[0].split(":");
+          variableString = [
+            `<span class='js-variable'>${s[0]}</span>`,
+            ":",
+            `<span class='js-variable-type'>${s[1]}</span>`,
+          ].join(" ");
+        }
+
+        // 값 타입 캐스팅
+        if (vv[1].includes("&lt") || vv[1].includes("as")) {
+          // <타입>
+          if (vv[1].includes("&lt")) {
+            const type = vv[1].slice(
+              vv[1].indexOf("&lt") + 3,
+              vv[1].indexOf("&gt")
+            );
+            const value = vv[1].split("&gt")[1];
+            valueString = [
+              "<span class='js-value-type'>&lt",
+              type,
+              "&gt</span>",
+              `<span class='js-value'>${value}</span>`,
+            ].join("");
+            // as 타입
+          } else if (vv[1].includes("as")) {
+            const splits = vv[1].split("as");
+
+            valueString = [
+              `<span class='js-value'>${splits[0]}</span>`,
+              "<span style='color : purple'>as</span>",
+              `<span class='js-value-type'>${splits[1]}</span>`,
+            ].join("");
+          }
+        }
+        putString += [variableString, " = ", valueString].join(" ");
+      }
+
+      // resultText.push(`<span class='js-const'>${text}</span>`);
+      resultText.push(`${tabString}${isExport}${putString}`);
+      return;
+    } else if (text.includes("interface")) {
+      jsType = "interface";
+      resultText.push(
+        `${tabString}${isExport}<span class='js-interface'>${text}</span>`
+      );
+      return;
+    } else if (text.includes("enum")) {
+      jsType = "enum";
+      resultText.push(
+        `${tabString}${isExport}<span class='js-enum'>${text}</span>`
+      );
+      return;
+    } else if (text.includes("import")) {
+      resultText.push(
+        `${tabString}${isExport}<span class='js-import'>${text}</span>`
+      );
+      return;
+    }
+
+    resultText.push(`${tabString}${text}`);
   });
 
   return resultText.join("<br />");

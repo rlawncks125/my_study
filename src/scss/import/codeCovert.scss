@@ -79,9 +79,53 @@
   color: skyblue;
 }
 
-.css-value {
+.css-variable {
   color: cornflowerblue;
 }
-.css-variable {
+.css-value {
   color: indianred;
+}
+
+.js-export {
+  color: plum;
+}
+.js-const {
+  color: skyblue;
+}
+.js-variable {
+  color: red;
+}
+.js-variable-type {
+  color: greenyellow;
+}
+.js-value {
+  color: rgb(99, 99, 230);
+}
+.js-value-type {
+  color: greenyellow;
+}
+.js-arrowFnc {
+  color: aqua;
+}
+.js-arrowFnc-variable {
+  color: aquamarine;
+}
+.js-arrowFnc-variable-type {
+  color: blue;
+}
+
+.js-interface {
+  color: darkorange;
+}
+.js-enum {
+  color: yellowgreen;
+}
+.js-import {
+  color: rgb(231, 54, 231);
+}
+.js-return {
+  color: rgb(136, 57, 136);
+}
+.js-returnContent {
+  color: coral;
 }
