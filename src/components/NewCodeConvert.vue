@@ -170,7 +170,7 @@ enum IJsTypes {
   "interface",
   "enum",
   "none",
-  "returnContent",
+  "return",
 }
 // Javasciprt Convert
 export const jsToCode = (code: string) => {
@@ -203,25 +203,40 @@ export const jsToCode = (code: string) => {
       return;
     }
 
-    // js return 처리
-    if (
-      jsType === "returnContent" ||
-      (text.includes("return") && text.indexOf("return") === 0)
-    ) {
-      // return 첫문단
-      if (text.includes("return")) {
-        const splits = text.split("return");
-        const textReturn = `<span class='js-return'>return</span> `;
-        const content = `<span class='js-returnContent'>${splits[1]}</span>`;
-        resultText.push(`${tabString}${textReturn}${content}`);
-        text.includes(";") ? (jsType = "none") : (jsType = "returnContent");
+    // jsType 문단 처리
+    if (jsType !== "none") {
+      switch (jsType) {
+        case "interface": {
+          const v = text.split(":");
+          const pushString = [
+            `<span class='js-interface-variable'>${v[0]}</span>`,
+            ":",
+            `<span class='js-interface-value'>${v[1]}</span>`,
+          ].join(" ");
+          resultText.push(`${tabString}${pushString}`);
+          return;
+        }
 
-        return;
+        case "enum": {
+          const v = text.split("=");
+          const pushString = [
+            `<span class='js-enum-variable'>${v[0]}</span>`,
+            "=",
+            `<span class='js-enum-value'>${v[1]}</span>`,
+          ].join(" ");
+          resultText.push(`${tabString}${pushString}`);
+          return;
+        }
+
+        case "return": {
+          const content = `<span class='js-return'>${text}</span>`;
+          resultText.push(`${tabString}${content}`);
+          return;
+        }
+
+        default:
+          break;
       }
-
-      const content = `<span class='js-returnContent'>${text}</span>`;
-      resultText.push(`${tabString}${content}`);
-      return;
     }
 
     // const 처리
@@ -343,20 +358,50 @@ export const jsToCode = (code: string) => {
       return;
     } else if (text.includes("interface")) {
       jsType = "interface";
+
+      const splits = text.split("interface");
+      const textInterface = `<span class='js-interface'>interface </span>`;
+      const interfaceEnd = `<span class='js-interface'> {</span>`;
+      const name = `<span class='js-interface-name'>${
+        splits[1].split("{")[0]
+      }</span>`;
       resultText.push(
-        `${tabString}${isExport}<span class='js-interface'>${text}</span>`
+        `${tabString}${isExport}${textInterface}${name}${interfaceEnd}`
       );
       return;
     } else if (text.includes("enum")) {
       jsType = "enum";
-      resultText.push(
-        `${tabString}${isExport}<span class='js-enum'>${text}</span>`
-      );
+
+      const splits = text.split("enum");
+      const textEnum = `<span class='js-enum'>enum </span>`;
+      const enumEnd = `<span class='js-enum'> {</span>`;
+      const name = `<span class='js-enum-name'>${
+        splits[1].split("{")[0]
+      }</span>`;
+      resultText.push(`${tabString}${isExport}${textEnum}${name}${enumEnd}`);
       return;
-    } else if (text.includes("import")) {
-      resultText.push(
-        `${tabString}${isExport}<span class='js-import'>${text}</span>`
-      );
+    } else if (text.includes("return") && text.indexOf("return") === 0) {
+      // 한줄에 명령이 끝났는지 체크
+      text.includes(";") ? (jsType = "none") : (jsType = "return");
+
+      const splits = text.split("return");
+      const textReturn = `<span class='js-return-declare'>return</span> `;
+      const content = `<span class='js-return'>${splits[1]}</span>`;
+      resultText.push(`${tabString}${textReturn}${content}`);
+      return;
+    } else if (text.includes("import") && text.indexOf("import") === 0) {
+      const formSplits = text.split("form");
+      const libray = formSplits[1];
+      const call = formSplits[0].split("import")[1];
+
+      const putString = [
+        `<span class='js-import'>import</span>`,
+        `<span class='js-import-call'>${call}</span>`,
+        `<span class='js-import'>form</span>`,
+        `<span class='js-import-libray'>${libray}</span>`,
+      ].join(" ");
+
+      resultText.push(`${tabString}${putString}`);
       return;
     }
 

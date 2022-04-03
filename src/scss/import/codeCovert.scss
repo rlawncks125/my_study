@@ -111,21 +111,48 @@
   color: aquamarine;
 }
 .js-arrowFnc-variable-type {
-  color: blue;
+  color: rgb(48, 48, 229);
 }
 
 .js-interface {
   color: darkorange;
 }
+.js-interface-name {
+  color: yellow;
+}
+.js-interface-variable {
+  color: rgb(247, 104, 15);
+}
+.js-interface-value {
+  color: rgb(54, 118, 237);
+}
+
 .js-enum {
   color: yellowgreen;
 }
+.js-enum-name {
+  color: darkorange;
+}
+.js-enum-variable {
+  color: rgb(247, 104, 15);
+}
+.js-enum-value {
+  color: rgb(54, 118, 237);
+}
+
 .js-import {
   color: rgb(231, 54, 231);
 }
-.js-return {
+.js-return-declare {
   color: rgb(136, 57, 136);
 }
-.js-returnContent {
+.js-return {
   color: coral;
+}
+
+.js-import-call {
+  color: aquamarine;
+}
+.js-import-libray {
+  color: aquamarine;
 }

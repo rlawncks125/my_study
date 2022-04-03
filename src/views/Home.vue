@@ -111,21 +111,19 @@ export default defineComponent({
         }
 
       
-
-
         interface Idd {
-          vava : string
+        ${Char_TAB}vava : number
         }
 
-        enum Enns {
-          'r' = 'r'
+         enum Enns {
+        ${Char_TAB}'r' = 'r'
         }
 
         export interface Idd {
-          vava : string
+        ${Char_TAB}vava : string
         }
         
-        import {ref , toRefs} form "vue";
+        import { ref , toRefs } form "vue";
         import form 'sss.css';
 
 
