@@ -31,10 +31,9 @@
           <input type="checkbox" id="check4" />
           <label for="check4">CSS</label>
           <div class="menu-warp">
-            <router-link to="/CSS">CSS</router-link>
-            <router-link to="/root의사클래스">root의사클래스</router-link>
-            <router-link to="/CSS함수">CSS함수</router-link>
-            <router-link to="/CSS선택자">CSS선택자</router-link>
+            <router-link to="/css/root의사클래스">root의사클래스</router-link>
+            <router-link to="/css/CSS함수">CSS함수</router-link>
+            <router-link to="/css/CSS선택자">CSS선택자</router-link>
           </div>
         </div>
         <div class="title-warp">
@@ -94,8 +93,8 @@
 </template>
 
 <style lang="scss">
-@import "/scss/import/media.scss";
-@import "/scss/import/codeCovert.scss";
+@import "/assets/scss/import/media.scss";
+@import "/assets/scss/import/codeCovert.scss";
 
 * {
   margin: 0;

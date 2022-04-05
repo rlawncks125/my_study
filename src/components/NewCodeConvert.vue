@@ -20,7 +20,14 @@ export default defineComponent({
     return {};
   },
 });
-export const Char_TAB = "&nbsp;&nbsp;";
+export const HTML_TAB = "&nbsp;&nbsp;";
+
+const splitsCode = (code: string) => {
+  // 한줄 한줄 변환
+  const split = code.split("\n");
+  // const split = code.split("/n");
+  return split;
+};
 
 // HTML Convert
 export const htmlToCode = (code: string) => {
@@ -30,9 +37,9 @@ export const htmlToCode = (code: string) => {
   // 처리
   splits.forEach((v) => {
     let text;
-    const { isTrue, text: refine, tabString } = commonConvert(v, resultText);
+    const { isBreak, text: refine, tabString } = commonConvert(v, resultText);
 
-    if (isTrue) return;
+    if (isBreak) return;
 
     text = refine;
 
@@ -125,9 +132,9 @@ export const cssToCode = (code: string) => {
 
   splits.forEach((v) => {
     let text;
-    const { isTrue, text: refine, tabString } = commonConvert(v, resultText);
+    const { isBreak, text: refine, tabString } = commonConvert(v, resultText);
 
-    if (isTrue) return;
+    if (isBreak) return;
     text = refine;
     text = text.trim();
 
@@ -160,7 +167,7 @@ export const cssToCode = (code: string) => {
       return;
     }
 
-    resultText.push(text);
+    resultText.push(`${tabString}${text}`);
   });
 
   return resultText.join("<br />");
@@ -182,9 +189,9 @@ export const jsToCode = (code: string) => {
   splits.forEach((v) => {
     let text;
     let isExport = "";
-    const { isTrue, text: refine, tabString } = commonConvert(v, resultText);
+    const { isBreak, text: refine, tabString } = commonConvert(v, resultText);
 
-    if (isTrue) return;
+    if (isBreak) return;
     text = refine;
     text = text.trim();
 
@@ -263,7 +270,6 @@ export const jsToCode = (code: string) => {
             `<span class='js-variable-type'>${s[1]}</span>`,
           ].join(" ");
         }
-
         // 익명 함수 타입
         const params = vv[1]
           .slice(vv[1].indexOf("(") + 1, vv[1].indexOf(")"))
@@ -292,7 +298,12 @@ export const jsToCode = (code: string) => {
           // 익명함수 타입 정의 캐스팅
           if (vv[1].replaceAll(" ", "").includes("):")) {
             const vvSplits = vv[1].split(":");
-            const type = vvSplits[vvSplits.length - 1];
+
+            let type = vvSplits[vvSplits.length - 1];
+            // <타입> 경우 '<' '>' 처리
+            type = type.replaceAll("<", "&lt");
+            type = type.replaceAll(">", "&gt");
+
             arrowFuncString += [
               " :",
               `<span class='js-variable-type'>${type}</span>`,
@@ -313,7 +324,6 @@ export const jsToCode = (code: string) => {
         const vv = remainText.split("=");
         let variableString = `<span class='js-variable'>${vv[0]}</span>`;
         let valueString = `<span class='js-value'>${vv[1]}</span>`;
-
         // 변수 타입 캐스팅
         if (vv[0].includes(":")) {
           const s = vv[0].split(":");
@@ -332,8 +342,15 @@ export const jsToCode = (code: string) => {
               vv[1].indexOf("&lt") + 3,
               vv[1].indexOf("&gt")
             );
+            let tpyeFrontFunc = "";
             const value = vv[1].split("&gt")[1];
+
+            if (vv[1].indexOf("&lt") !== 1) {
+              tpyeFrontFunc = `${vv[1].split("&lt")[0]}`;
+            }
+
             valueString = [
+              tpyeFrontFunc,
               "<span class='js-value-type'>&lt",
               type,
               "&gt</span>",
@@ -411,53 +428,107 @@ export const jsToCode = (code: string) => {
   return resultText.join("<br />");
 };
 
-const splitsCode = (code: string) => {
-  // 한줄 한줄 변환
-  const split = code.split("\n");
-  // const split = code.split("/n");
-  return split;
+export const descriptionTocode = (code: string, mode?: ":" | "=") => {
+  const resultText = [] as any[];
+  const splits = splitsCode(code);
+
+  splits.forEach((v) => {
+    let text;
+    let putString = "";
+    const { isBreak, text: refine, tabString } = commonConvert(v, resultText);
+
+    if (isBreak) return;
+    text = refine;
+    text = text.trim();
+
+    text = text.replaceAll("<", "&lt");
+    text = text.replaceAll(">", "&gt");
+
+    switch (mode) {
+      case "=": {
+        const vv = text.split("=");
+
+        vv.length > 1
+          ? (putString += [`<span class='desc'>${vv[0]}</span>`, vv[1]].join(
+              " = "
+            ))
+          : (putString += vv[0]);
+
+        resultText.push(`${tabString}${putString}`);
+        return;
+      }
+
+      case ":":
+      default: {
+        const vv = text.split(":");
+
+        vv.length > 1
+          ? (putString += [`<span class='desc'>${vv[0]}</span>`, vv[1]].join(
+              " : "
+            ))
+          : (putString += vv[0]);
+
+        resultText.push(`${tabString}${putString}`);
+        return;
+      }
+    }
+
+    // resultText.push(`${tabString}${text}`);
+  });
+  return resultText.join("<br />");
 };
 
 const commonConvert = (
   text: string,
   buffArray: any[]
-): { isTrue: boolean; text: string; tabString: string } => {
+): { isBreak: boolean; text: string; tabString: string } => {
   let tabString = "";
+  text = text.trim();
+
   // 탭 처리
-  if (text.includes("&nbsp;")) {
-    const da = text.split("&nbsp;");
-    tabString = "&nbsp;".repeat(da.length - 1);
+  if (text.includes(HTML_TAB)) {
+    const da = text.split(HTML_TAB);
+    tabString = HTML_TAB.repeat(da.length - 1);
 
     text = da[da.length - 1];
-    text = text.replaceAll("&nbsp;", " ");
+    text = text.replaceAll(HTML_TAB, " ");
   }
 
   // 주석 처리
-  if (text.slice(0, 2) === "//") {
+  if (text.includes("//") && text.indexOf("//") === 0) {
     buffArray.push(`${tabString}<span class=footnote>${text}</span>`);
-    return { isTrue: true, text, tabString };
-  }
-
-  // 설명 처리
-  if (text.slice(0, 4) === "----") {
-    // return `${tabString}<span class=co-설명>${text.slice(
-    //   4,
-    //   text.length
-    // )}</span><br />`;
-    return { isTrue: true, text, tabString };
+    return { isBreak: true, text, tabString };
   }
 
   // ex) 처리
-  if (text.slice(0, 3) === "ex)") {
-    // return `${tabString}<span class=co-ex>ex)</span>${text.slice(
-    //   3,
-    //   text.length
-    // )}<br />`;
-    return { isTrue: true, text, tabString };
+  if (text.includes("ex)") && text.indexOf("ex)") === 0) {
+    let putString = "";
+    const vv = text.split("ex)");
+    putString += `<span class='ex-type'>ex)</span> ${vv[1]}`;
+    buffArray.push(`${tabString}${putString}`);
+    return { isBreak: true, text, tabString };
   }
 
-  return { isTrue: false, text, tabString };
+  return { isBreak: false, text, tabString };
 };
+
+// 기본 구조
+/*
+const func = (code: string) => {
+  const resultText = [] as any[];
+  const splits = splitsCode(code);
+  splits.forEach((v) => {
+    let text;
+    const { isBreak, text: refine, tabString } = commonConvert(v, resultText);
+    if (isBreak) return;
+    text = refine;
+    text = text.trim();
+
+    resultText.push(`${tabString}${text}`);
+  });
+  return resultText.join("<br />");
+};
+*/
 </script>
 
 <style scoped></style>

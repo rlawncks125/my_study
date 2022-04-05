@@ -97,27 +97,26 @@ const routes: Array<RouteRecordRaw> = [
     name: "CSS",
     component: () =>
       import(/* webpackChunkName: "CSS" */ "../views/CSS-views/CSS.vue"),
-  },
-  {
-    path: "/root의사클래스",
-    name: "root의사클래스",
-    component: () => import("../views/CSS-views/root의사클래스.vue"),
-  },
-  {
-    path: "/css선택자",
-    name: "css선택자",
-    component: () => import("../views/CSS-views/CSS선택자.vue"),
-  },
-  {
-    path: "/CSS함수",
-    name: "CSS함수",
-    component: () => import("../views/CSS-views/CSS함수.vue"),
-  },
-  {
-    path: "/CSS선택자",
-    name: "CSS선택자",
-    component: () =>
-      import(/* webpackChunkName: "CSS" */ "../views/CSS-views/CSS선택자.vue"),
+    children: [
+      {
+        path: "root의사클래스",
+        name: "root의사클래스",
+        component: () => import("../views/CSS-views/root의사클래스.vue"),
+      },
+      {
+        path: "css함수",
+        name: "css함수",
+        component: () => import("../views/CSS-views/CSS함수.vue"),
+      },
+      {
+        path: "CSS선택자",
+        name: "CSS선택자",
+        component: () =>
+          import(
+            /* webpackChunkName: "CSS" */ "../views/CSS-views/CSS선택자.vue"
+          ),
+      },
+    ],
   },
   {
     path: "/media쿼리",
