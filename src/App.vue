@@ -99,9 +99,31 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
+
+export default defineComponent({
+  setup() {
+    const mobileHeigthSize = () => {
+      const dh = window.innerHeight;
+
+      document.documentElement.style.setProperty("--mobile--full", `${dh}px`);
+    };
+
+    onMounted(() => {
+      window.addEventListener("load", mobileHeigthSize);
+      window.addEventListener("resize", mobileHeigthSize);
+    });
+
+    return {};
+  },
+});
+</script>
+
 <style lang="scss">
-@import "/assets/scss/import/media.scss";
-@import "/assets/scss/import/codeCovert.scss";
+:root {
+  --mobile--full: 100vh;
+}
 
 * {
   margin: 0;
@@ -110,7 +132,7 @@
 
 html {
   // 모바일
-  @include md() {
+  @include mobile() {
     font-size: 10px;
   }
 }
@@ -140,9 +162,10 @@ details {
 #main {
   display: flex;
   justify-content: space-between;
-  height: 100vh;
+  height: var(--mobile--full);
+  overflow: hidden;
 
-  @include md() {
+  @include mobile() {
     display: block;
     height: 100%;
   }
@@ -171,8 +194,9 @@ details {
     display: none;
   }
 
-  @include md() {
+  @include mobile() {
     width: 100vw;
+    max-width: 100vw;
     max-height: 100vh;
     position: sticky;
     top: 0px;
@@ -275,8 +299,9 @@ details {
 #view {
   flex: auto;
   overflow: auto;
-  margin-top: 1rem;
-  padding: 0 1rem 4rem;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 1rem;
   // 줄바꿈
   word-break: break-all;
   white-space: pre-line;
