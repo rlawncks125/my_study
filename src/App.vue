@@ -84,6 +84,13 @@
             >
           </div>
         </div>
+        <div class="title-warp">
+          <input type="checkbox" id="check10" />
+          <label for="check10">CS기술 면접</label>
+          <div class="menu-warp">
+            <router-link to="/cs기술면접/test">test</router-link>
+          </div>
+        </div>
       </ul>
     </div>
     <div id="view">
@@ -104,7 +111,7 @@
 html {
   // 모바일
   @include md() {
-    font-size: 15px;
+    font-size: 10px;
   }
 }
 
@@ -112,6 +119,22 @@ a {
   all: unset;
   color: black;
   cursor: pointer;
+}
+
+details {
+  margin-top: 0.5rem;
+
+  summary {
+    cursor: pointer;
+    padding: 0.5rem;
+
+    border: 1px solid black;
+    & ~ div {
+      padding: 0.5rem;
+      border: 1px solid black;
+      border-top: 0px;
+    }
+  }
 }
 
 #main {
@@ -127,7 +150,8 @@ a {
 
 #nav {
   flex: none;
-  width: 14rem;
+  width: 30vw;
+  max-width: 14rem;
   height: 100%;
   overflow: auto;
   display: flex;

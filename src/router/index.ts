@@ -199,6 +199,18 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/기타/함수_Promise_리턴값.vue"),
   },
   {
+    path: "/cs기술면접",
+    name: "cs기술면접",
+    component: () => import("@/views/CS기술면접/main.vue"),
+    children: [
+      {
+        path: "test",
+        name: "cs기술면접 테스트",
+        component: () => import("@/views/CS기술면접/test.vue"),
+      },
+    ],
+  },
+  {
     path: "/:pathMatch(.*)*",
     redirect: "/",
   },

@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, onMounted } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import { store, key } from "./store";
@@ -7,9 +7,17 @@ import "./registerServiceWorker";
 import componentCodeConvert from "./components/codeConvert.vue";
 import Diif_Code from "./components/Diff-Code.vue";
 
+// @ts-ignore
+import { Accordion } from "@/assets/animate.ts";
+
 createApp(App)
   .use(store, key)
   .use(router)
+  .directive("Accordion", {
+    mounted: (el: HTMLElement) => {
+      new Accordion(el);
+    },
+  })
   .component("code-convert", componentCodeConvert)
   .component("diff-code", Diif_Code)
   .mount("#app");

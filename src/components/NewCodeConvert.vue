@@ -428,6 +428,7 @@ export const jsToCode = (code: string) => {
   return resultText.join("<br />");
 };
 
+// 설명 to code
 export const descriptionTocode = (code: string, mode?: ":" | "=") => {
   const resultText = [] as any[];
   const splits = splitsCode(code);
