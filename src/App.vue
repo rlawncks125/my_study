@@ -89,6 +89,7 @@
           <label for="check10">CS기술 면접</label>
           <div class="menu-warp">
             <router-link to="/cs기술면접/test">test</router-link>
+            <router-link to="/cs기술면접/link">link</router-link>
           </div>
         </div>
       </ul>

@@ -208,6 +208,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "cs기술면접 테스트",
         component: () => import("@/views/CS기술면접/test.vue"),
       },
+      {
+        path: "link",
+        name: "cs기술면접 link",
+        component: () => import("@/views/CS기술면접/link.vue"),
+      },
     ],
   },
   {
