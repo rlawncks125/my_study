@@ -90,6 +90,7 @@
           <div class="menu-warp">
             <router-link to="/cs기술면접/test">test</router-link>
             <router-link to="/cs기술면접/link">link</router-link>
+            <router-link to="/cs기술면접/think">개발상식</router-link>
           </div>
         </div>
       </ul>
@@ -134,7 +135,7 @@ export default defineComponent({
 html {
   // 모바일
   @include mobile() {
-    font-size: 10px;
+    font-size: 15px;
   }
 }
 
@@ -144,20 +145,31 @@ a {
   cursor: pointer;
 }
 
-details {
-  margin-top: 0.5rem;
+h2 {
+  margin-top: 2rem;
+}
 
+li {
+  transform: translateX(1.5rem);
+  padding-right: 1.5rem;
+}
+
+details {
   summary {
     cursor: pointer;
     padding: 0.5rem;
 
     border: 1px solid black;
-    & ~ div {
+    & ~ .content {
       padding: 0.5rem;
       border: 1px solid black;
       border-top: 0px;
     }
   }
+}
+
+.deco-none {
+  text-decoration: none;
 }
 
 #main {

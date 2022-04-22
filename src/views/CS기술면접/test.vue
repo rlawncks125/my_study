@@ -6,7 +6,7 @@
       <h4>{{ item.dsc }}</h4>
       <details v-Accordion>
         <summary>상세</summary>
-        <div v-html="item.detail" />
+        <div class="content" v-html="item.detail" />
       </details>
     </div>
   </div>
