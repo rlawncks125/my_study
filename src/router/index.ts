@@ -218,6 +218,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "개발 상식",
         component: () => import("@/views/CS기술면접/개발상식.vue"),
       },
+      {
+        path: "network",
+        name: "네트워크",
+        component: () => import("@/views/CS기술면접/네트워크.vue"),
+      },
     ],
   },
   {

@@ -3,7 +3,7 @@
     <div v-for="item in items" :key="item.id">
       <h2>{{ item.title }}</h2>
 
-      <h4>{{ item.dsc }}</h4>
+      <h4 v-if="item.dsc">{{ item.dsc }}</h4>
       <details v-Accordion>
         <summary>상세</summary>
         <div class="content" v-html="item.detail" />

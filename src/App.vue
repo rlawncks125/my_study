@@ -91,6 +91,7 @@
             <router-link to="/cs기술면접/test">test</router-link>
             <router-link to="/cs기술면접/link">link</router-link>
             <router-link to="/cs기술면접/think">개발상식</router-link>
+            <router-link to="/cs기술면접/network">네트워크</router-link>
           </div>
         </div>
       </ul>
@@ -258,7 +259,9 @@ details {
 .organize .title-warp {
   padding: 0rem 1rem;
   margin: 0.5rem 1rem 0;
-  border-bottom: white 1px solid;
+  &:not(:last-child) {
+    border-bottom: white 1px solid;
+  }
 
   & .menu-warp {
     height: 100%;
