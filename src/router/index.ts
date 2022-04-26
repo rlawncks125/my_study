@@ -198,6 +198,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "함수_Promise_리턴값",
     component: () => import("@/views/기타/함수_Promise_리턴값.vue"),
   },
+
   {
     path: "/cs기술면접",
     name: "cs기술면접",
@@ -222,6 +223,22 @@ const routes: Array<RouteRecordRaw> = [
         path: "network",
         name: "네트워크",
         component: () => import("@/views/CS기술면접/네트워크.vue"),
+      },
+    ],
+  },
+  {
+    path: "/markdown",
+    name: "markdown",
+    component: () =>
+      import(/* webpackChunkName: "markdown" */ "@/views/markdown/main.vue"),
+    children: [
+      {
+        path: "글자",
+        name: "markdown글자",
+        component: () =>
+          import(
+            /* webpackChunkName: "markdown" */ "@/views/markdown/글자.vue"
+          ),
       },
     ],
   },
