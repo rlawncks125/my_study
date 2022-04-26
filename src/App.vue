@@ -98,6 +98,7 @@
           <label for="check11">Markdown</label>
           <div class="menu-warp">
             <router-link to="/markdown">markdown</router-link>
+            <router-link to="/markdown/main">main</router-link>
             <router-link to="/markdown/글자">글자</router-link>
           </div>
         </div>

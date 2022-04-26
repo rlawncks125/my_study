@@ -6,17 +6,21 @@
 import { defineComponent, onMounted, ref } from "vue";
 import axios from "axios";
 import { marked } from "marked";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   setup() {
     const markdown = ref("");
+    const { meta } = useRoute();
 
     onMounted(async () => {
-      const { data } = await axios.get(
-        "https://raw.githubusercontent.com/rlawncks125/markdown/main/글자.md"
-      );
+      if (meta.page) {
+        const { data } = await axios.get(
+          `https://raw.githubusercontent.com/rlawncks125/markdown/main/${meta.page}.md`
+        );
 
-      markdown.value = marked(data);
+        data && (markdown.value = marked(data));
+      }
     });
 
     return { markdown };

@@ -8,13 +8,14 @@
   <!-- https://github.com/sindresorhus/github-markdown-css -->
   <!-- 참고 사이트 : https://sukvvon.tistory.com/74 -->
   <div class="markdown-body">
-    <router-view />
+    <router-view :key="route.fullPath" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { marked } from "marked";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   setup() {
@@ -28,7 +29,7 @@ export default defineComponent({
       // smartLists: true,
       // smartypants: false,
     });
-    return {};
+    return { route: useRoute() };
   },
 });
 </script>

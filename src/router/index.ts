@@ -233,12 +233,24 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "markdown" */ "@/views/markdown/main.vue"),
     children: [
       {
-        path: "글자",
-        name: "markdown글자",
+        path: "main",
         component: () =>
           import(
-            /* webpackChunkName: "markdown" */ "@/views/markdown/글자.vue"
+            /* webpackChunkName: "markdown" */ "@/views/markdown/render.vue"
           ),
+        meta: {
+          page: "README",
+        },
+      },
+      {
+        path: "글자",
+        component: () =>
+          import(
+            /* webpackChunkName: "markdown" */ "@/views/markdown/render.vue"
+          ),
+        meta: {
+          page: "글자",
+        },
       },
     ],
   },
@@ -256,3 +268,9 @@ const router = createRouter({
 });
 
 export default router;
+
+declare module "vue-router" {
+  interface RouteMeta {
+    page?: string;
+  }
+}
