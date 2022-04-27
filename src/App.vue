@@ -91,6 +91,7 @@
             <router-link to="/cs기술면접/link">link</router-link>
             <router-link to="/cs기술면접/think">개발상식</router-link>
             <router-link to="/cs기술면접/network">네트워크</router-link>
+            <router-link to="/cs기술면접/운영체재">운영체재</router-link>
           </div>
         </div>
         <div class="title-warp">
@@ -178,6 +179,41 @@ details {
       border: 1px solid black;
       border-top: 0px;
     }
+  }
+}
+
+table {
+  border: 1px solid black;
+  padding: 0 0.5rem;
+}
+
+tr {
+  th {
+    padding: 0 0.5rem;
+  }
+
+  th ~ th {
+    border-left: 1px solid black;
+  }
+}
+
+th {
+  font-size: 0.7rem;
+}
+
+blockquote {
+  padding-left: 1rem;
+  position: relative;
+
+  &::before {
+    display: inline-block;
+    content: "";
+    position: absolute;
+    background-color: rgb(173, 173, 173);
+    height: 100%;
+    width: 0.4rem;
+    top: 0;
+    left: 0;
   }
 }
 
