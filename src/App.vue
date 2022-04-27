@@ -89,9 +89,9 @@
           <label for="check10">CS기술 면접</label>
           <div class="menu-warp">
             <router-link to="/cs기술면접/link">link</router-link>
-            <router-link to="/cs기술면접/think">개발상식</router-link>
+            <!-- <router-link to="/cs기술면접/think">개발상식</router-link>
             <router-link to="/cs기술면접/network">네트워크</router-link>
-            <router-link to="/cs기술면접/운영체재">운영체재</router-link>
+            <router-link to="/cs기술면접/운영체재">운영체재</router-link> -->
           </div>
         </div>
         <div class="title-warp">
