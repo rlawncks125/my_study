@@ -1,5 +1,4 @@
 <template>
-  <p>markdown</p>
   <!-- marked -->
   <!-- 설치 npm install --save marked -->
   <!-- @types 설치 npm install --save @types/marked-->
@@ -43,6 +42,12 @@ export default defineComponent({
   padding: 10px;
   @include mobile() {
     padding: 8px;
+  }
+  ul {
+    padding-left: 1rem;
+  }
+  blockquote {
+    line-height: 0.2rem;
   }
 }
 

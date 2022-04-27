@@ -233,7 +233,7 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "markdown" */ "@/views/markdown/main.vue"),
     children: [
       {
-        path: "main",
+        path: "README",
         component: () =>
           import(
             /* webpackChunkName: "markdown" */ "@/views/markdown/render.vue"
@@ -250,6 +250,56 @@ const routes: Array<RouteRecordRaw> = [
           ),
         meta: {
           page: "글자",
+        },
+      },
+      {
+        path: "링크_줄바꿈",
+        component: () =>
+          import(
+            /* webpackChunkName: "markdown" */ "@/views/markdown/render.vue"
+          ),
+        meta: {
+          page: "링크_줄바꿈",
+        },
+      },
+      {
+        path: "선_강조",
+        component: () =>
+          import(
+            /* webpackChunkName: "markdown" */ "@/views/markdown/render.vue"
+          ),
+        meta: {
+          page: "선_강조",
+        },
+      },
+      {
+        path: "이미지",
+        component: () =>
+          import(
+            /* webpackChunkName: "markdown" */ "@/views/markdown/render.vue"
+          ),
+        meta: {
+          page: "이미지",
+        },
+      },
+      {
+        path: "인용글_목록",
+        component: () =>
+          import(
+            /* webpackChunkName: "markdown" */ "@/views/markdown/render.vue"
+          ),
+        meta: {
+          page: "인용글_목록",
+        },
+      },
+      {
+        path: "코드",
+        component: () =>
+          import(
+            /* webpackChunkName: "markdown" */ "@/views/markdown/render.vue"
+          ),
+        meta: {
+          page: "코드",
         },
       },
     ],

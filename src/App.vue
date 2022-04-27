@@ -97,9 +97,13 @@
           <input type="checkbox" id="check11" />
           <label for="check11">Markdown</label>
           <div class="menu-warp">
-            <router-link to="/markdown">markdown</router-link>
-            <router-link to="/markdown/main">main</router-link>
+            <router-link to="/markdown/README">README</router-link>
             <router-link to="/markdown/글자">글자</router-link>
+            <router-link to="/markdown/링크_줄바꿈">링크_줄바꿈</router-link>
+            <router-link to="/markdown/선_강조">선_강조</router-link>
+            <router-link to="/markdown/이미지">이미지</router-link>
+            <router-link to="/markdown/인용글_목록">인용글_목록</router-link>
+            <router-link to="/markdown/코드">코드</router-link>
           </div>
         </div>
       </ul>
