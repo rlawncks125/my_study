@@ -5,6 +5,7 @@ import { store, key } from "./store";
 import "./registerServiceWorker";
 
 import componentCodeConvert from "./components/codeConvert.vue";
+import newComponentCodeConvert from "./components/NewCodeConvert.vue";
 import Diif_Code from "./components/Diff-Code.vue";
 
 // @ts-ignore
@@ -19,6 +20,7 @@ createApp(App)
     },
   })
   .component("code-convert", componentCodeConvert)
+  .component("code-new", newComponentCodeConvert)
   .component("diff-code", Diif_Code)
   .mount("#app");
 

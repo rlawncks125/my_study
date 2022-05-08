@@ -310,6 +310,10 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: "/anima",
+    component: () => import("@/views/애니메이션/정리전.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     redirect: "/",
   },

@@ -59,7 +59,7 @@ export default defineComponent({
     const envTest = process.env.VUE_APP_TEST || "env 적용안됌";
     const envPORTFOLIO = process.env.VUE_APP_PORTFOLIO;
 
-    const items = [NewConvert테스트(), text그라데이션(), bgGradientAni()];
+    const items = [NewConvert테스트(), text그라데이션()];
 
     watch(
       // 배열 혹은 Object의 특정 값만 감지하고싶을떄
@@ -226,41 +226,6 @@ const text그라데이션 = () => {
     ].join("<br />"),
   };
 };
-
-const bgGradientAni = () => {
-  return {
-    title: "",
-    html: `<div class="bg-graident-animation">bg graident animation</div>`,
-    code: [
-      htmlToCode(
-        `//html
-        <div class="bg-graident-animation">bg graident animation</div>
-        `
-      ),
-      cssToCode(`//css
-      .bg-graident-animation {
-  ${HTML_TAB}background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  ${HTML_TAB}background-size: 400% 400%;
-  ${HTML_TAB}animation: graident-animation 10s ease infinite;
-
-  ${HTML_TAB}width: 400px;
-  ${HTML_TAB}height: 400px;
-}
-
-@keyframes graident-animation {
-  ${HTML_TAB}0% {
-  ${HTML_TAB}${HTML_TAB}background-position: 0% 50%;
-  ${HTML_TAB}}
-  ${HTML_TAB}50% {
-  ${HTML_TAB}${HTML_TAB}background-position: 100% 50%;
-  ${HTML_TAB}}
-  ${HTML_TAB}100% {
-  ${HTML_TAB}${HTML_TAB}background-position: 0% 50%;
-  ${HTML_TAB}}
-}`),
-    ],
-  };
-};
 </script>
 
 <style lang="scss">
@@ -291,26 +256,5 @@ const bgGradientAni = () => {
   background-clip: text;
   color: transparent;
   font-size: 2rem;
-}
-
-.bg-graident-animation {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: graident-animation 10s ease infinite;
-
-  width: 400px;
-  height: 400px;
-}
-
-@keyframes graident-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 </style>

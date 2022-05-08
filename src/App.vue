@@ -86,6 +86,13 @@
         </div>
         <div class="title-warp">
           <input type="checkbox" id="check10" />
+          <label for="check10">애니메이션</label>
+          <div class="menu-warp">
+            <router-link to="/anima">정리전</router-link>
+          </div>
+        </div>
+        <div class="title-warp">
+          <input type="checkbox" id="check10" />
           <label for="check10">CS기술 면접</label>
           <div class="menu-warp">
             <router-link to="/cs기술면접/link">link</router-link>
