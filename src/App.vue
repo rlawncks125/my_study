@@ -7,9 +7,10 @@
       <ul class="organize">
         <div class="title-warp">
           <input type="checkbox" id="check2" />
-          <label for="check2">About</label>
+          <label for="check2">임시탭</label>
           <div class="menu-warp">
             <router-link to="/about">About</router-link>
+            <router-link to="/임시">임시</router-link>
           </div>
         </div>
         <div class="title-warp">
@@ -52,6 +53,21 @@
           </div>
         </div>
         <div class="title-warp">
+          <input type="checkbox" id="check100" />
+          <label for="check100">CSS 디자인</label>
+          <div class="menu-warp">
+            <router-link to="/css디자인/text">text</router-link>
+            <router-link to="/css디자인/image">image</router-link>
+          </div>
+        </div>
+        <div class="title-warp">
+          <input type="checkbox" id="check101" />
+          <label for="check101">애니메이션</label>
+          <div class="menu-warp">
+            <router-link to="/anima">정리전</router-link>
+          </div>
+        </div>
+        <div class="title-warp">
           <input type="checkbox" id="check6" />
           <label for="check6">Vue</label>
           <div class="menu-warp">
@@ -84,13 +100,7 @@
             >
           </div>
         </div>
-        <div class="title-warp">
-          <input type="checkbox" id="check10" />
-          <label for="check10">애니메이션</label>
-          <div class="menu-warp">
-            <router-link to="/anima">정리전</router-link>
-          </div>
-        </div>
+
         <div class="title-warp">
           <input type="checkbox" id="check10" />
           <label for="check10">CS기술 면접</label>

@@ -198,7 +198,6 @@ const routes: Array<RouteRecordRaw> = [
     name: "함수_Promise_리턴값",
     component: () => import("@/views/기타/함수_Promise_리턴값.vue"),
   },
-
   {
     path: "/cs기술면접",
     name: "cs기술면접",
@@ -228,6 +227,28 @@ const routes: Array<RouteRecordRaw> = [
         path: "운영체재",
         name: "운영체재",
         component: () => import("@/views/CS기술면접/운영체재.vue"),
+      },
+    ],
+  },
+  {
+    path: "/CSS디자인",
+    name: "/CSS디자인",
+    component: () =>
+      import(/* webpackChunkName: "css디자인" */ "@/views/CSS디자인/main.vue"),
+    children: [
+      {
+        path: "text",
+        component: () =>
+          import(
+            /* webpackChunkName: "css디자인" */ "@/views/CSS디자인/text.vue"
+          ),
+      },
+      {
+        path: "image",
+        component: () =>
+          import(
+            /* webpackChunkName: "css디자인" */ "@/views/CSS디자인/image.vue"
+          ),
       },
     ],
   },
@@ -312,6 +333,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/anima",
     component: () => import("@/views/애니메이션/정리전.vue"),
+  },
+  {
+    path: "/임시",
+    component: () => import("@/views/임시.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
