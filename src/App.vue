@@ -62,6 +62,11 @@
         </div>
         <div class="title-warp">
           <input type="checkbox" id="check101" />
+          <label for="check101">정규식 표현</label>
+          <div class="menu-warp"></div>
+        </div>
+        <div class="title-warp">
+          <input type="checkbox" id="check101" />
           <label for="check101">애니메이션</label>
           <div class="menu-warp">
             <router-link to="/anima">정리전</router-link>
@@ -176,7 +181,12 @@ a {
   cursor: pointer;
 }
 
+h1 {
+  font-size: 1.8rem;
+}
+
 h2 {
+  font-size: 1.4rem;
   margin-top: 2rem;
 }
 

@@ -9,8 +9,10 @@
       >링크</a
     >
   </div>
+
   <div>
-    <p>CSS 디자인</p>
+    <br />
+    <h1 :style="{ borderBottom: `1px solid black` }">CSS 디자인</h1>
     <div>
       <h2>text</h2>
       <ul>
@@ -24,6 +26,7 @@
         <li>background 를 이용한 이미지 그리기</li>
         <li>::after backgound를 이용한 이미지 그리기</li>
         <li>picture 와 source 태그를 이용한 미디어크기에 따른 이미지 그리기</li>
+        <li>이미지 위에 글자 시인성 ( 잘보이게 )</li>
       </ul>
     </div>
   </div>
@@ -33,4 +36,12 @@
 export default {};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h2 {
+  margin-top: 1rem;
+}
+
+li {
+  list-style: square;
+}
+</style>

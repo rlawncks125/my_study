@@ -118,7 +118,7 @@ export const htmlToCode = (code: string) => {
         return;
       }
     }
-    resultText.push(text);
+    resultText.push(`${tabString}${text}`);
   });
 
   return resultText.join("<br />");
