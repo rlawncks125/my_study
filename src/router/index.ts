@@ -331,6 +331,10 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: "/regexp",
+    component: () => import("@/views/정규식/regexp.vue"),
+  },
+  {
     path: "/anima",
     component: () => import("@/views/애니메이션/정리전.vue"),
   },

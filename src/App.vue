@@ -63,7 +63,9 @@
         <div class="title-warp">
           <input type="checkbox" id="check101" />
           <label for="check101">정규식 표현</label>
-          <div class="menu-warp"></div>
+          <div class="menu-warp">
+            <router-link to="/regexp">정규식</router-link>
+          </div>
         </div>
         <div class="title-warp">
           <input type="checkbox" id="check101" />

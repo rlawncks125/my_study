@@ -57,7 +57,7 @@ const imageBg = (): codeReutrnType => {
       <div class="image-bg"></div>`),
       cssToCode(`// css
       .image-bg {
-          ${HTML_TAB}background-image: url("https://res.cloudinary.com/dhdq4v4ar/image/upload/w_250,h_250/v1603952836/sample.jpg");
+          ${HTML_TAB}background-image: url(이미지 주소);
           ${HTML_TAB}width: 300px;
           ${HTML_TAB}height: 250px;
         }
@@ -89,8 +89,8 @@ $after-bg-height: 250px;
   ${HTML_TAB}${HTML_TAB}height: $after-bg-height;
   ${HTML_TAB}${HTML_TAB}
   ${HTML_TAB}${HTML_TAB}position: absolute;
-  ${HTML_TAB}${HTML_TAB}top: calc(50% - (#{$after-bg-width} / 2));
-  ${HTML_TAB}${HTML_TAB}left: calc(50% - (#{$after-bg-height} / 2));
+  ${HTML_TAB}${HTML_TAB}top: calc(50% - (#{$after-bg-height} / 2));
+  ${HTML_TAB}${HTML_TAB}left: calc(50% - (#{$after-bg-width} / 2));
   ${HTML_TAB}${HTML_TAB}
   ${HTML_TAB}${HTML_TAB}background-image: url(이미지 주소);
   ${HTML_TAB}}
@@ -188,6 +188,7 @@ const bgText = (): codeReutrnType => {
 
 $after-bg-width: 300px;
 $after-bg-height: 250px;
+
 .after-bg {
   width: 400px;
   height: 400px;
@@ -202,8 +203,8 @@ $after-bg-height: 250px;
     height: $after-bg-height;
 
     position: absolute;
-    top: calc(50% - (#{$after-bg-width} / 2));
-    left: calc(50% - (#{$after-bg-height} / 2));
+    top: calc(50% - (#{$after-bg-height} / 2));
+    left: calc(50% - (#{$after-bg-width} / 2));
 
     background-image: url("https://res.cloudinary.com/dhdq4v4ar/image/upload/w_250,h_250/v1603952836/sample.jpg");
   }
