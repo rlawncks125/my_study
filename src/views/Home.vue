@@ -27,13 +27,20 @@
         <li>::after backgound를 이용한 이미지 그리기</li>
         <li>picture 와 source 태그를 이용한 미디어크기에 따른 이미지 그리기</li>
         <li>이미지 위에 글자 시인성 ( 잘보이게 )</li>
+        <li>유튜브 이미지 마우스 오버시 동영상 재생으로 바뀜</li>
       </ul>
     </div>
   </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
+
+export default defineComponent({
+  setup() {
+    return {};
+  },
+});
 </script>
 
 <style lang="scss" scoped>
