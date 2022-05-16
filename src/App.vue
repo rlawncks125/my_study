@@ -65,6 +65,7 @@
           <label for="check101">정규식 표현</label>
           <div class="menu-warp">
             <router-link to="/regexp">정규식</router-link>
+            <router-link to="/regexp/example">예제_테스트</router-link>
           </div>
         </div>
         <div class="title-warp">

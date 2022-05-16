@@ -197,7 +197,7 @@ const youtubeImage = (): codeReutrnType => {
   });
 
   return {
-    title: "유튜브 이미지 마우스 오버시 동영상 재생으로 바뀜",
+    title: "유튜브 썸네일 마우스 오버시 딜레이후 동영상 재생으로 바뀜",
     html: ` <div class="youtube-struct">
     <div class="image-view">
       <img

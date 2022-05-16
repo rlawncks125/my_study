@@ -8,11 +8,18 @@
       v-model="stateText"
       :style="{ width: '100%' }"
     /><br />
+    <span>Flags</span>
+    <select v-model="flagsRef">
+      <option :value="item" v-for="item in regexpFlags" :key="item.id">
+        {{ item }}
+      </option>
+    </select>
+    <br />
     <label for="regexp">정규식 </label
     ><input
       type="text"
       id="regexp"
-      placeholder="/ 정규식 작성후 Enter of 변환 버튼 클릭 /"
+      placeholder="/ 정규식 작성후 Enter of 변환 버튼 클릭 /[flags]"
       @keydown="onKeydown"
       @input="
         (e) => {
@@ -41,6 +48,15 @@ export default defineComponent({
     const regexpResult = ref("");
     const stateText = ref("");
     let innerDom = ref<HTMLElement>();
+    const flagsRef = ref();
+    const regexpFlags = ["i", "g", "ig"];
+
+    // i : 대·소문자 구분 없이 검색 , ignoreCase
+    // g : 일치하는 모든 문자 검색 , global
+    // m : 여러 줄에 걸쳐 탐색 , multiline
+    // s : .이 줄 바꿈에 일치하는지 , dotAll
+    // u : Unicode 기능의 활성화 , unicode
+    // y : 문자 내 특정 위치에서 검색을 진행하는 ‘sticky’ 모드를 활성화 , sticky
 
     onMounted(() => {
       innerDom.value = document.querySelector(".regexpRender")! as HTMLElement;
@@ -51,8 +67,8 @@ export default defineComponent({
         innerDom.value!.innerHTML = "";
         return;
       }
-
-      const reg = new RegExp(regexpStr.value, "g");
+      console.log(regexpStr.value);
+      const reg = new RegExp(regexpStr.value, flagsRef.value);
       regexpResult.value = stateText.value.replace(reg, "●");
 
       innerDom.value!.innerHTML = regexpResult.value;
@@ -64,7 +80,7 @@ export default defineComponent({
       }
     };
 
-    return { regexpStr, stateText, testBtn, onKeydown };
+    return { regexpStr, stateText, testBtn, onKeydown, regexpFlags, flagsRef };
   },
 });
 </script>
