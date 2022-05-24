@@ -358,17 +358,13 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  // github Page 새로고침 404페이지 오류 해결
-  // 1.
-  // {path: "/:pathMatch(.*)", redirect: "/"}
-  // ↑↑ 다른 경로접근시 홈으로 강제 redirect 시킴
+  // history: createWebHistory(process.env.BASE_URL),
 
-  // 2.
+  // github Page 새로고침 404페이지 오류 해결
   // createWebHashHistory() 함수사용 hash mode 사용
   // hash 단점
   // 웹접근성 건너뛰기 링크에 걸림
-  // history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });
 
