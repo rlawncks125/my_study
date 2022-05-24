@@ -1,4 +1,9 @@
-import { createRouter, RouteRecordRaw, createWebHashHistory } from "vue-router";
+import {
+  createRouter,
+  RouteRecordRaw,
+  createWebHashHistory,
+  createWebHistory,
+} from "vue-router";
 import Home from "../views/Home.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -347,15 +352,23 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/임시.vue"),
   },
   {
-    path: "/:pathMatch(.*)*",
+    path: "/:pathMatch(.*)",
     redirect: "/",
   },
 ];
 
 const router = createRouter({
-  // history: createWebHistory(process.env.BASE_URL),
-  // github Page 새로고침 404페이지 해결하려면 Hash사용
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL),
+  // github Page 새로고침 404페이지 오류 해결
+  // 1.
+  // {path: "/:pathMatch(.*)", redirect: "/"}
+  // ↑↑ 다른 경로접근시 홈으로 강제 redirect 시킴
+
+  // 2.
+  // createWebHashHistory() 함수사용 hash mode 사용
+  // hash 단점
+  // 웹접근성 건너뛰기 링크에 걸림
+  // history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });
 
