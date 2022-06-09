@@ -1,4 +1,5 @@
 <template>
+  <!-- 주석 테스트 -->
   <div id="main">
     <div id="nav">
       <router-link class="go-home" to="/">Home</router-link>

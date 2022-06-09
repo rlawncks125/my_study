@@ -361,9 +361,9 @@ const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
 
   // github Page 새로고침 404페이지 오류 해결
-  // createWebHashHistory() 함수사용 hash mode 사용
+  // createWebHashHistory() 함수사용 hash mode
   // hash 단점
-  // 웹접근성 건너뛰기 링크에 걸림
+  // 웹접근성 건너뛰기 링크에 걸림 , URL /#/ 추가됨
   history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });

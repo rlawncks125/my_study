@@ -1,5 +1,5 @@
 <template>
-  <div>home</div>
+  <div>Home</div>
   <div>
     퍼블 연습 사이트
     <a
