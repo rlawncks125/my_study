@@ -31,6 +31,7 @@
       </ul>
     </div>
   </div>
+  <CodeEditor code="const s = 'a';" langages="javascript" />
 </template>
 
 <script lang="ts">

@@ -1,10 +1,14 @@
 # 공부 정리 사이트
 
+# code editor
 
+검색 : vue code highlight component
+적용 : [simple-code-editor](https://www.npmjs.com/package/simple-code-editor)
 
-***
+---
 
 # Heroku 배포
+
 ## Procfile를 이용한 heroku Configure Dynos 명령어 수정
 
 ```js
@@ -12,9 +16,8 @@
 web: npm run start:prod // 실행할 명령어
 ```
 
-
-
 # netlify 배포 추가 설정
+
 ### 환경변수 추가
 
 NODE_VERSION=14.17.5

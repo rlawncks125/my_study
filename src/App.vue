@@ -394,6 +394,7 @@ blockquote {
 #view {
   flex: auto;
   overflow: auto;
+  overflow-x: hidden;
   margin: 0 auto;
   height: 100%;
   padding: 0 1rem;

@@ -4,6 +4,7 @@ import router from "./router";
 import { store, key } from "./store";
 import "./registerServiceWorker";
 
+import CodeEditor from "@/plugins/simple-code-editor.vue";
 import componentCodeConvert from "./components/codeConvert.vue";
 import newComponentCodeConvert from "./components/NewCodeConvert.vue";
 import Diif_Code from "./components/Diff-Code.vue";
@@ -19,6 +20,7 @@ createApp(App)
       new Accordion(el);
     },
   })
+  .component("CodeEditor", CodeEditor)
   .component("code-convert", componentCodeConvert)
   .component("code-new", newComponentCodeConvert)
   .component("diff-code", Diif_Code)
