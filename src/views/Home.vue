@@ -1,5 +1,5 @@
 <template>
-  <div>Home Netlify 배포 테스트</div>
+  <div>Home github -> Netlify 배포 변경</div>
   <div>
     퍼블 연습 사이트
     <a
