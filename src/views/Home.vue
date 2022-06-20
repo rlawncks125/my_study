@@ -1,5 +1,5 @@
 <template>
-  <div>Home</div>
+  <div>Home Netlify 배포 테스트</div>
   <div>
     퍼블 연습 사이트
     <a
@@ -31,15 +31,27 @@
       </ul>
     </div>
   </div>
-  <CodeEditor code="const s = 'a';" langages="javascript" />
+
+  <simCode
+    value="const s = 'a';"
+    :language_selector="true"
+    :languages="lamguages"
+    width="100%"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
+import simCode from "simple-code-editor";
+import { ELanguages } from "@/plugins/simple-code-editor.vue";
 
 export default defineComponent({
+  components: { simCode },
   setup() {
-    return {};
+    const cl = Object.keys(ELanguages);
+    const lamguages = cl.map((v) => [v, v]);
+
+    return { lamguages };
   },
 });
 </script>
