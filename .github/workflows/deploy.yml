@@ -57,3 +57,19 @@ jobs:
           publish_branch: gh-pages
           # Set an input directory for deployment.
           publish_dir: ./dist
+  
+      - name: Netlify Deploy
+        # You may pin to the exact commit or the version.
+        # uses: jsmrcaga/action-netlify-deploy@53de32e559b0b3833615b9788c7a090cd2fddb03
+        uses: jsmrcaga/action-netlify-deploy@v1.8.0
+        with:
+          # Auth token to use with netlify
+          NETLIFY_AUTH_TOKEN:  ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          # Your Netlify site id
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          # Should the site be deployed to production?
+          NETLIFY_DEPLOY_TO_PROD: true
+          # Directory where built files are stored
+          build_directory: ./dist
+    
+          
