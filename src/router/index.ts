@@ -199,6 +199,21 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/VUEX-view/파일정리.vue"),
   },
   {
+    path: "/vuex/선언",
+    name: "선언",
+    component: () => import("@/views/VUEX-view/선언.vue"),
+  },
+  {
+    path: "/vuex/Typescript",
+    name: "타입스크립트",
+    component: () => import("@/views/VUEX-view/Typescript.vue"),
+  },
+  {
+    path: "/vuex/Typescript2",
+    name: "타입스크립트2",
+    component: () => import("@/views/VUEX-view/Typescript2.vue"),
+  },
+  {
     path: "/함수_Promise_리턴값",
     name: "함수_Promise_리턴값",
     component: () => import("@/views/기타/함수_Promise_리턴값.vue"),

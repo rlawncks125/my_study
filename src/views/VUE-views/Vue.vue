@@ -1,70 +1,96 @@
 <template>
   <div>vue3</div>
-  <h1 class="div-line">라이프 사이클</h1>
-  <diff-code :left="40" :right="60">
-    <template #left>
-      <code-convert>
-        <template #title> Vue2</template>
-        <template #code> {{ vue2_lifeCycle }}</template>
-      </code-convert>
-    </template>
-    <template #right>
-      <code-convert>
-        <template #title> Vue3</template>
-        <template #code>{{ vue3_lifeCycle }} </template>
-      </code-convert>
-    </template>
-  </diff-code>
+  <h1 class="div-line">라이프 사이클 비교</h1>
+  <div>
+    <div class="vue-diff">
+      <div v-for="item in items1" :key="item.id">
+        <h1>{{ item.title }}</h1>
+        <div v-html="item.html"></div>
+        <!-- <code-new :codeText="item.code" /> -->
+        <div style="margin: 0.5rem 0" v-for="code in item.code" :key="code.id">
+          <CodeEditor :value="code.code" :lang="code.lang" />
+        </div>
+      </div>
+      <div v-for="item in items2" :key="item.id">
+        <h1>{{ item.title }}</h1>
+        <div v-html="item.html"></div>
+        <!-- <code-new :codeText="item.code" /> -->
+        <div style="margin: 0.5rem 0" v-for="code in item.code" :key="code.id">
+          <CodeEditor :value="code.code" :lang="code.lang" />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
+import { codeReutrnType, ELanguages } from "@/plugins/simple-code-editor.vue";
 import { defineComponent, reactive, toRefs } from "vue";
-import { codeProcess } from "../../components/codeConvert.vue";
 
 export default defineComponent({
   setup() {
-    const data = reactive({
-      vue2_lifeCycle: codeProcess(`
-      //코드
-      /tt---- beforeCreate() {},
-      /tt---- created() {},
-      /tt---- beforeMount() {},
-      /tt---- mounted() {},
-      /tt---- unmounted() {},
-      /tt---- beforeUpdate() {},
-      /tt---- updated() {},
-      /tt---- activated() {},
-      /tt---- deactivated() {},
-      /tt---- beforeDestroy() {},
-      /tt---- destroyed() {},
-      /tt---- errorCaptured() {},
-      `),
-      vue3_lifeCycle: codeProcess(`
-      //코드
-      /tt---- beforecreate , created => setup()
-
-      setup() {
-         // 라이프 사이클
-         /tt---- onBeforeMount(() => {}); 
-         /tt---- onMounted(() => {}); 
-         /tt---- onBeforeUpdate(() => {}); 
-         /tt---- onUpdated(() => {}); 
-         /tt---- onBeforeUnmount(() => {}); 
-         /tt---- onUnmounted(() => {}); 
-         /tt---- onErrorCaptured(() => {}); 
-         /tt---- onRenderTracked(() => {}); 
-         /tt---- onRenderTriggered(() => {}); 
-      }
-      `),
-    });
+    const items1 = [vue2()];
+    const items2 = [vue3()];
 
     return {
-      ...toRefs(data),
+      items1,
+      items2,
     };
   },
+});
+
+const vue2 = (): codeReutrnType => ({
+  title: "Vue2",
+  code: [
+    {
+      lang: ELanguages.javascript,
+      code: `beforeCreate() 
+created() 
+
+beforeMount() 
+mounted() 
+unmounted() 
+beforeUpdate() 
+updated() 
+activated() 
+deactivated() 
+beforeDestroy() 
+destroyed() 
+errorCaptured() `,
+    },
+  ],
+});
+const vue3 = (): codeReutrnType => ({
+  title: "Vue3",
+  code: [
+    {
+      lang: ELanguages.javascript,
+      code: `beforecreate , created => setup()
+
+  setup() {
+  // 라이프 사이클
+    onBeforeMount()
+    onMounted()
+    onBeforeUpdate()
+    onUpdated()
+    onBeforeUnmount()
+    onUnmounted()
+    onErrorCaptured()
+    onRenderTracked()
+    onRenderTriggered()
+  }`,
+    },
+  ],
 });
 </script>
 
 <style lang="scss">
 @use '@/assets/scss/common/_mixins.scss';
+
+.vue-diff {
+  display: flex;
+  justify-content: left;
+
+  gap: 1rem;
+}
 </style>

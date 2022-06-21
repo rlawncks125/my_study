@@ -91,8 +91,11 @@
           <label for="check7">Vuex</label>
           <div class="menu-warp">
             <router-link to="/vuex/파일구조">파일 구조</router-link>
-            <router-link to="/vuex/모듈정의">모듈 정의</router-link>
-            <router-link to="/vuex/파일정리">파일 정리</router-link>
+            <!-- <router-link to="/vuex/모듈정의">모듈 정의</router-link> -->
+            <!-- <router-link to="/vuex/파일정리">파일 정리</router-link> -->
+            <router-link to="/vuex/선언">선언</router-link>
+            <router-link to="/vuex/Typescript">Typescript</router-link>
+            <router-link to="/vuex/Typescript2">Typescript2</router-link>
           </div>
         </div>
         <div class="title-warp">
@@ -104,9 +107,9 @@
           <input type="checkbox" id="check9" />
           <label for="check9">기타</label>
           <div class="menu-warp">
-            <router-link to="/함수_Promise_리턴값"
+            <!-- <router-link to="/함수_Promise_리턴값"
               >함수_Promise_리턴값</router-link
-            >
+            > -->
           </div>
         </div>
 

@@ -7,61 +7,52 @@
   <hr />
   <br />
 
-  <code-convert>
-    <template #title>{{ 문자열.title }} </template>
-    <template #content>
-      <p>{{ msg }}</p>
-      <p v-once>업데이트 하지 않습니다.{{ msg }}</p>
-    </template>
-    <template #code>{{ 문자열.code }} </template>
-  </code-convert>
-  <code-convert>
-    <template #title>{{ 원시HTML.title }} </template>
-    <template #content>
-      <p>텍스트 보간시 : {{ rawHtml }}</p>
-      <p>v-html 디렉티브시 : <span v-html="rawHtml"></span></p>
-    </template>
-    <template #code>{{ 원시HTML.code }} </template>
-  </code-convert>
-  <code-convert>
-    <template #title>{{ 속성.title }} </template>
-    <template #content>
-      <div :id="attrId">HTMl 속성사용시 v-bind디렉티브 사용</div>
-      <button :disabled="disabled">Button</button>
-    </template>
-    <template #code>{{ 속성.code }} </template>
-  </code-convert>
-  <code-convert>
-    <template #title>{{ JavaScrpit_표현식.title }} </template>
-    <template #content>
-      <p>
-        {{ js.number + 1 }}
-      </p>
-      <p>
-        {{ js.ok ? "yes" : "no" }}
-      </p>
-      <p>
-        {{ js.message.split("").reverse().join("") }}
-      </p>
-      <div :id="'list-' + js.name"></div>
-      <button @click="js.boolean = !js.boolean">
-        값 할당 : {{ js.boolean }}
-      </button>
-    </template>
-    <template #code>{{ JavaScrpit_표현식.code }} </template>
-  </code-convert>
-  <code-convert>
-    <template #title>{{ 동적전달.title }} </template>
-    <template #content>
-      <p :[attrName]="attrNameValue"></p>
-    </template>
-    <template #code>{{ 동적전달.code }} </template>
-  </code-convert>
-</template>
+  <h1>문자열</h1>
+  <p>{{ msg }}</p>
+  <p v-once>업데이트 하지 않습니다.{{ msg }}</p>
+  <div style="margin: 0.5rem 0" v-for="code in items[0].code" :key="code.id">
+    <CodeEditor :value="code.code" :lang="code.lang" />
+  </div>
 
+  <h1>원시HTML</h1>
+  <p>텍스트 보간시 : {{ rawHtml }}</p>
+  <p>v-html 디렉티브시 : <span v-html="rawHtml"></span></p>
+  <div style="margin: 0.5rem 0" v-for="code in items[1].code" :key="code.id">
+    <CodeEditor :value="code.code" :lang="code.lang" />
+  </div>
+
+  <h1>속성</h1>
+  <div :id="attrId">HTMl 속성사용시 v-bind디렉티브 사용</div>
+  <button :disabled="disabled">Button</button>
+  <div style="margin: 0.5rem 0" v-for="code in items[2].code" :key="code.id">
+    <CodeEditor :value="code.code" :lang="code.lang" />
+  </div>
+
+  <h1>JavaScript 표현식</h1>
+  <p>
+    {{ js.number + 1 }}
+  </p>
+  <p>
+    {{ js.ok ? "yes" : "no" }}
+  </p>
+  <p>
+    {{ js.message.split("").reverse().join("") }}
+  </p>
+  <div :id="'list-' + js.name"></div>
+  <button @click="js.boolean = !js.boolean">값 할당 : {{ js.boolean }}</button>
+  <div style="margin: 0.5rem 0" v-for="code in items[3].code" :key="code.id">
+    <CodeEditor :value="code.code" :lang="code.lang" />
+  </div>
+
+  <h1 :[attrName]="attrNameValue">동적 전달</h1>
+  <div style="margin: 0.5rem 0" v-for="code in items[4].code" :key="code.id">
+    <CodeEditor :value="code.code" :lang="code.lang" />
+  </div>
+</template>
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from "vue";
-import { codeProcess } from "@/components/codeConvert.vue";
+
+import { codeReutrnType, ELanguages } from "@/plugins/simple-code-editor.vue";
 
 export default defineComponent({
   setup() {
@@ -80,76 +71,101 @@ export default defineComponent({
       attrName: "id",
       attrNameValue: "동적전달_Id",
     });
-    const 문자열 = reactive({
-      title: "문자열",
-      code: codeProcess(`
-      <span>{{ msg }}</span>
-      <span v-once>변경시 업데이트 하지 않습니다.{{ msg }}</span>
 
-    //   데이터
-    msg: "문자열 보간입니다.",
-      `),
-    });
-    const 원시HTML = reactive({
-      title: "원시HTML",
-      code: codeProcess(`
-      ---- <p>텍스트 보간시 : {{ rawHtml }}</p>
-      ---- <p>v-html 디렉티브시 : <span v-html="rawHtml"></span></p>
-
-    //   데이터
-    ---- rawHtml: "<span style='color: red;'>rawHtml</span>",
-      `),
-    });
-    const 속성 = reactive({
-      title: "속성",
-      code: codeProcess(`
-      <div :id="attrId">HTMl 속성사용시 v-bind디렉티브 사용</div>
-      <button :disabled="disabled">Button</button>
-
-    //   데이터
-     attrId: "attr_Id",
-      disabled: true,
-      `),
-    });
-    const JavaScrpit_표현식 = reactive({
-      title: "JavaScrpit_표현식",
-      code: codeProcess(`
-        {{ js.number + 1 }}
-        {{ js.ok ? "yes" : "no" }}
-        {{ js.message.split(" ").reverse().join(" ") }}
-      <div :id = "'list-' + js.name"></div>
-      <button @click="js.boolean = !js.boolean">값 할당 : {{ js.boolean }}</button>
-
-    //   데이터
-     js: {
-        /ttnumber: 22,
-        /ttok: true,
-        /ttmessage: "안녕 하세요 템플릿 문법 입니다.",
-        /ttname: "키오스크",
-        /ttboolean: true,
-      },
-      `),
-    });
-    const 동적전달 = reactive({
-      title: "동적 전달",
-      code: codeProcess(`
-        <p :[attrName]="attrNameValue"></p>
-
-        // 데이터
-         attrName: "id",
-      attrNameValue: "동적전달_Id",
-      `),
-    });
+    const items = [
+      문자열s(),
+      원시HTMLs(),
+      속성s(),
+      자바스스크립트s(),
+      동적전달s(),
+    ];
 
     return {
       ...toRefs(data),
-      문자열,
-      원시HTML,
-      속성,
-      JavaScrpit_표현식,
-      동적전달,
+      items,
     };
   },
+});
+
+const 문자열s = (): codeReutrnType => ({
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<span> {{ msg }} </span>
+<span v-once > 변경시 업데이트 하지 않습니다.{{ msg }} </span>
+
+<script setup>
+const msg =  "문자열 보간입니다."
+'</'script>
+`.replace("'</'", "</"),
+    },
+  ],
+});
+const 원시HTMLs = (): codeReutrnType => ({
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<p>텍스트 보간시 : {{ rawHtml }}</p>
+<p>v-html 디렉티브시 : <span v-html="rawHtml"></span></p>
+
+<script setup>
+const rawHtml = "<span style='color: red;'>rawHtml</span>",
+'</'script>
+`.replace("'</'", "</"),
+    },
+  ],
+});
+const 속성s = (): codeReutrnType => ({
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<div :id="attrId" > HTMl 속성사용시 v-bind디렉티브 사용 </div>
+<button :disabled="disabled" > Button </button>
+
+<script setup>
+const attrId = "attr_Id",
+const disabled = true,
+'</'script>
+`.replace("'</'", "</"),
+    },
+  ],
+});
+const 자바스스크립트s = (): codeReutrnType => ({
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<p>{{ js.number + 1 }}</p>
+<p>{{ js.ok ? "yes" : "no" }}</p>
+<p>{{ js.message.split("").reverse().join("") }}</p>
+<div :id="'list-' + js.name"></div>
+<button @click="js.boolean = !js.boolean">값 할당 : {{ js.boolean }}</button>
+
+<script setup>
+js: {
+    number: 22,
+    ok: true,
+    message: "안녕 하세요 템플릿 문법 입니다.",
+    name: "키오스크",
+    boolean: true,
+},
+'</'script>
+`.replace("'</'", "</"),
+    },
+  ],
+});
+const 동적전달s = (): codeReutrnType => ({
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<h1 :[attrName]="attrNameValue">동적 전달</h1>
+
+<script setup>
+const attrName = "id",
+const attrNameValue = "동적전달_Id",
+'</'script>
+`.replace("'</'", "</"),
+    },
+  ],
 });
 </script>
 

@@ -6,231 +6,163 @@
   >
   <hr />
   <br />
-
-  <code-convert>
-    <template #title>{{ class_object.title }} </template>
-    <template #content>
-      <div v-bind:class="{ active: class_object.data.isActive }"></div>
-      <div
-        class="static"
-        v-bind:class="{
-          active: class_object.data.isActive,
-          'text-danger': class_object.data.hasError,
-        }"
-      ></div>
-      <div v-bind:class="class_object.classObject"></div>
+  <div>
+    <template v-for="item in items" :key="item.id">
+      <h1>{{ item.title }}</h1>
+      <div v-html="item.html"></div>
+      <!-- <code-new :codeText="item.code" /> -->
+      <div style="margin: 0.5rem 0" v-for="code in item.code" :key="code.id">
+        <CodeEditor :value="code.code" :lang="code.lang" />
+      </div>
     </template>
-    <template #code>{{ class_object.code }} </template>
-  </code-convert>
-
-  <code-convert>
-    <template #title>{{ class_Array.title }} </template>
-    <template #content>
-      <div
-        v-bind:class="[
-          class_Array.data.activeClass,
-          class_Array.data.errorClass,
-        ]"
-      ></div>
-      <div
-        v-bind:class="[
-          class_Array.isActive ? class_Array.data.activeClass : '',
-          class_Array.data.errorClass,
-        ]"
-      ></div>
-      <div
-        v-bind:class="[
-          { active: class_Array.isActive },
-          class_Array.data.errorClass,
-        ]"
-      ></div>
-      <div :class="[class_Array.data]"></div>
-    </template>
-    <template #code>{{ class_Array.code }} </template>
-  </code-convert>
-
-  <code-convert>
-    <template #title>{{ style_Object.title }} </template>
-    <template #content>
-      <div
-        v-bind:style="{
-          color: style_Object.data.activeColor,
-          fontSize: style_Object.data.fontSize + 'px',
-        }"
-      ></div>
-      <div v-bind:style="style_Object.styleObject"></div>
-    </template>
-    <template #code>{{ style_Object.code }} </template>
-  </code-convert>
-
-  <code-convert>
-    <template #title>{{ style_Array.title }} </template>
-    <template #content>
-      <div :style="[style_Array.baseStyles, style_Array.divStyles]"></div>
-    </template>
-    <template #code>{{ style_Array.code }} </template>
-  </code-convert>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from "vue";
 import { codeProcess } from "@/components/codeConvert.vue";
+import { codeReutrnType, ELanguages } from "@/plugins/simple-code-editor.vue";
 
 export default defineComponent({
   setup() {
-    const class_object = reactive({
-      title: "클래스_객체 구문",
-      code: codeProcess(`
+    const items = [클래스객체(), 클래스배열(), 스타일객체(), 스타일배열()];
 
-      ---- <div v-bind:class = "{ active: isActive }"></div>
-      
-      // 데이터
-      isActive: true
-      
-      // 결과
-      <div class="active"></div>
+    return { items };
+  },
+});
 
-      // =====================================================
+const 클래스객체 = (): codeReutrnType => ({
+  title: "클래스 객체 구문",
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<div v-bind:class="{ active: isActive }"></div>
+<!-- 결과 --> <div class="active"></div>
 
-      ---- <div class = "static" 
-      ---- v-bind:class = "{ active: data.isActive, 'text-danger' : data.hasError }"></div>
+<script setup>
+const isActive = true;
+'</'script>
 
-      // 데이터
-      data: {
-  /ttisActive: true,
-  /tthasError: false
+<!-- -->
+<div class="static"
+v-bind:class="{ active: data.isActive, 'text-danger' : data.hasError }"></div>
+<!-- 결과 --><div class="static active" ></div>
+
+<script setup>
+const data = {
+    isActive: true,
+    hasError: false
 }
-      // 결과 
+'</'script>
 
-      <div class="static active"></div>
+<!-- -->
+<div v-bind:class="classObject"></div>
+<!-- 결과 --> <div class="active text-danger" > </div>
 
-      // =====================================================
-  ---- <div v-bind:class = "classObject"></div>
+<script setup>
+const classObject = {
+    active: true,
+    "text-danger": true,
+},
+'</'script>
 
-// 데이터
-classObject: {
-        /ttactive: true,
-        /tt"text-danger": true,
+`.replaceAll("'</'", "</"),
+    },
+  ],
+});
+
+const 클래스배열 = (): codeReutrnType => ({
+  title: "클래스 배열 구문",
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<div v-bind:class="[ data.activeClass , data.errorClass ]"></div>
+<!-- 결과 --> <div class="active text-danger" ></div>
+
+<script setup>
+const data = {
+    activeClass : "active",
+    errorClass : "text-danger",
+}
+'</'script>
+
+<!-- -->
+
+<!-- 삼항 연산자 이용 -->
+<div v-bind:class="[ isActive ? data.activeClass : '', data.errorClass ]"></div>
+
+<!-- 배열 구문 내에 객체구문을 사용 -->
+<div v-bind:class="[ { active: isActive }, data.errorClass ]"></div>
+
+<!-- 결과 --><div class="active text-danger" > </div>
+
+<script setup>
+const isActive = true,
+const data = {
+    activeClass: "active",
+    errorClass: "text-danger",
+}
+'</'script>
+
+
+`.replaceAll("'</'", "</"),
+    },
+  ],
+});
+
+const 스타일객체 = (): codeReutrnType => ({
+  title: "스타일 객체 구문",
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<div v-bind:style="{ color: data.activeColor, fontSize: data.fontSize + 'px' }"></div>
+<!-- 결과 --> <div style="color : red; font-size : 30px;" > </div>
+
+<script setup>
+const data = {
+    activeColor: "red",
+    fontSize: 30,
+}
+'</'script>
+
+<!-- -->
+
+<div v-bind:style="styleObject"></div>
+<!-- 결과 --> <div style="color : red; font-size : 14px;"></div>
+
+<script setup>
+const styleObject: {
+    color: "red",
+    fontSize: "14px",
+}
+'</'script>
+`.replaceAll("'</'", "</"),
+    },
+  ],
+});
+const 스타일배열 = (): codeReutrnType => ({
+  title: "스타일 배열 구문",
+  code: [
+    {
+      lang: ELanguages.xml,
+      code: `<div v-bind:style="[baseStyles, divStyles]"></div>
+<!-- 결과 --> 
+<div style="font-size: 12px; border: 1px solid black; color: red; "> </div>
+
+<script setup>
+const baseStyles = {
+    fontSize: "12px",
+    border: "1px solid black",
+},
+const divStyles = {
+    color: "red",
 },
 
-// 결과
-<div class="active text-danger"></div>
-      `),
-      data: {
-        isActive: true,
-        hasError: false,
-      },
-      classObject: {
-        active: true,
-        "text-danger": true,
-      },
-    });
-    const class_Array = reactive({
-      title: "클래스_배열 구문",
-      code: codeProcess(`
-      ---- <div v-bind:class="[ data.activeClass , data.errorClass ]"></div>
+'</'script>
 
-      // 데이터 
-       data: {
-        /ttactiveClass : "active",
-        /tterrorClass : "text-danger",
-      },
-
-      // 결과
-      <div class="active text-danger"></div>
-
-      // ===========================================================
-
-      // 삼항 연산자 이용하여 줄시
-      ---- <div v-bind:class="[ isActive ? data.activeClass : ' ',
-        ----  data.errorClass ]"></div>
-
-      // 배열 구문 내에 객체구문을 사용할시
-      ---- <div v-bind:class="[ { active: isActive }, data.errorClass ]"></div>
-
-      // 데이터
-         isActive: true,
-       data: {
-        /ttactiveClass: "active",
-        /tterrorClass: "text-danger",
-      }
-
-      // 결과
-      <div class="active text-danger"></div>
-
-      `),
-      data: {
-        activeClass: "active",
-        errorClass: "text-danger",
-      },
-      isActive: true,
-    });
-    const style_Object = reactive({
-      title: "스타일_객체 구문",
-      code: codeProcess(`
-       ---- <div v-bind:style = "{ color: data.activeColor, fontSize: data.fontSize + 'px' }"></div>
-
-      // 데이터 
-      data: {
-        /ttactiveColor: "red",
-        /ttfontSize: 30,
-      },
-
-      // 결과
-      <div style="color : red; font-size : 30px;"></div>
-
-      //===========================================================
-
-      ---- <div v-bind:style="styleObject"></div>
-
-      // 데이터
-      styleObject: {
-        /ttcolor: "red",
-        /ttfontSize: "14px",
-      },
-
-      // 결과
-      <div style="color : red; font-size : 14px;></div>
-
-      `),
-      data: {
-        activeColor: "red",
-        fontSize: 30,
-      },
-      styleObject: {
-        color: "red",
-        fontSize: "14px",
-      },
-    });
-    const style_Array = reactive({
-      title: "스타일_배열 구문",
-      code: codeProcess(`
-      ---- <div v-bind:style = "[baseStyles, divStyles]"></div>
-
-      // 데이터
-       baseStyles: {
-        /ttfontSize: "12px",
-        /ttborder: "1px solid black",
-      },
-      divStyles: {
-        /ttcolor: "red",
-      },
-
-      // 결과
-      <div style="font-size: 12px; border: 1px solid black; color: red;></div>
-
-      `),
-      baseStyles: {
-        fontSize: "12px",
-        border: "1px solid black",
-      },
-      divStyles: {
-        color: "red",
-      },
-    });
-
-    return { class_object, class_Array, style_Object, style_Array };
-  },
+`.replaceAll("'</'", "</"),
+    },
+  ],
 });
 </script>
 
