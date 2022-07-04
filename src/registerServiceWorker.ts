@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "production") {
     ready() {
       console.log(
         "App is being served from cache by a service worker.\n" +
-          "For more details, visit https://study.kimjuchan97.site/#/"
+          "For more details, visit https://study.kimjuchan97.xyz/"
       );
     },
     registered() {

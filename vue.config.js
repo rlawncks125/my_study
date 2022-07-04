@@ -11,4 +11,28 @@ module.exports = {
       },
     },
   },
+  pwa: {
+    themeColor: "#4DBA87",
+    backgroundColor: "#4DBA87",
+    display: "standalone",
+    scope: "/",
+    startUrl: "/",
+    name: "대충 정리한 사이트234",
+    shortName: "김주찬 Site",
+
+    iconPaths: {
+      faviconSVG: "favicon.ico",
+      favicon32: "icons/logo_x32.png",
+      favicon16: "icons/logo_x16.png",
+      appleTouchIcon: "icons/logo_x152.png",
+      msTileImage: "icons/logo_x128.png",
+    },
+    // configure the workbox plugin
+    workboxPluginMode: "InjectManifest",
+    workboxOptions: {
+      // swSrc is required in InjectManifest mode.
+      swSrc: "src/service-worker.js",
+      // ...other Workbox options...
+    },
+  },
 };
