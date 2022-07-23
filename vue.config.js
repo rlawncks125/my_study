@@ -17,7 +17,7 @@ module.exports = {
     display: "standalone",
     scope: "/",
     startUrl: "/",
-    name: "대충 정리한 사이트234",
+    name: "대충 정리한 사이트2345",
     shortName: "김주찬 Site",
 
     iconPaths: {

@@ -1,10 +1,14 @@
 <template>
   <div>
-    <template v-for="item in items" :key="item.id">
+    <template v-for="(item, index) in items" :key="index">
       <h1>{{ item.title }}</h1>
       <div v-html="item.html"></div>
       <!-- <code-new :codeText="item.code" /> -->
-      <div style="margin: 0.5rem 0" v-for="code in item.code" :key="code.id">
+      <div
+        style="margin: 0.5rem 0"
+        v-for="(code, index) in item.code"
+        :key="index"
+      >
         <CodeEditor :value="code.code" :lang="code.lang" />
       </div>
     </template>

@@ -7,7 +7,7 @@
     "build": "vue-cli-service build && cp ./netlify.toml ./dist",
     "lint": "vue-cli-service lint",
     "deploy": "./deploy.sh",
-    "pwa": "npm run build && npx http-server dist -p 3333"
+    "pwa": "npm run build && npx http-server ./dist -p 3334 -c-1"
   },
   "dependencies": {
     "@types/marked": "^4.0.3",
