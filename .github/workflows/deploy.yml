@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 14
           cache: "npm"
+        # Post Use Node.js 14 빌드 Cache오류
+        env:
+          FORCE_COLOR: 0
 
       # 배포 .env 파일 생성 & secrets를 이용한 env값추가
       - name: vue depoly product Create .env file
