@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [master]
 
+env:
+  FORCE_COLOR: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,9 +26,6 @@ jobs:
         with:
           node-version: 14
           cache: "npm"
-        # Post Use Node.js 14 빌드 Cache오류
-        env:
-          FORCE_COLOR: 0
 
       # 배포 .env 파일 생성 & secrets를 이용한 env값추가
       - name: vue depoly product Create .env file
@@ -37,22 +37,26 @@ jobs:
           VUE_APP_TEST: "env 파일 Test"
           VUE_APP_PORTFOLIO: ${{ secrets.PORTFOLIO }}
 
-        # Netlify 배포
-      - name: Netlify Deploy
-        # You may pin to the exact commit or the version.
-        # uses: jsmrcaga/action-netlify-deploy@53de32e559b0b3833615b9788c7a090cd2fddb03
-        uses: jsmrcaga/action-netlify-deploy@v1.8.0
-        with:
-          # Auth token to use with netlify
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          # Your Netlify site id
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          # Directory where built files are stored
-          build_directory: ./dist
+        # Post Use Node.js 14 빌드 Cache오류
+      - run: mkdir -p /home/runner/.npm
+        continue-on-error: true
 
-          NETLIFY_DEPLOY_TO_PROD: true
-          # node version
-          node_version: 14
+        # Netlify 배포
+      # - name: Netlify Deploy
+      #   # You may pin to the exact commit or the version.
+      #   # uses: jsmrcaga/action-netlify-deploy@53de32e559b0b3833615b9788c7a090cd2fddb03
+      #   uses: jsmrcaga/action-netlify-deploy@v1.8.0
+      #   with:
+      #     # Auth token to use with netlify
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     # Your Netlify site id
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      #     # Directory where built files are stored
+      #     build_directory: ./dist
+
+      #     NETLIFY_DEPLOY_TO_PROD: true
+      #     # node version
+      #     node_version: 14
 
       # githubpages 배포 설정
 
