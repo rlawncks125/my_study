@@ -38,7 +38,8 @@ jobs:
           VUE_APP_PORTFOLIO: ${{ secrets.PORTFOLIO }}
 
         # Post Use Node.js 14 빌드 Cache오류
-      - run: mkdir -p /home/runner/.npm
+      - name: Post Node.js Cache오류
+        run: mkdir -p /home/runner/.npm
         continue-on-error: true
 
         # Netlify 배포
