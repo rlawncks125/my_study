@@ -4,7 +4,11 @@
       <h1>{{ item.title }}</h1>
       <div v-html="item.html"></div>
       <!-- <code-new :codeText="item.code" /> -->
-      <div style="margin: 0.5rem 0" v-for="code in item.code" :key="code.id">
+      <div
+        style="margin: 0.5rem 0"
+        v-for="(code, index) in item.code"
+        :key="index"
+      >
         <CodeEditor :value="code.code" :lang="code.lang" />
       </div>
     </template>
@@ -12,13 +16,13 @@
 </template>
 
 <script lang="ts">
-import { ELanguages } from "@/plugins/simple-code-editor.vue";
+import { ELanguages, codeReutrnType } from "@/plugins/simple-code-editor.vue";
 
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   setup() {
-    const items = [text그라데이션()];
+    const items = [text그라데이션(), textThreeDot()];
 
     return { items };
   },
@@ -55,6 +59,27 @@ const text그라데이션 = () => {
     ],
   };
 };
+
+const textThreeDot = (): codeReutrnType => {
+  return {
+    title: "문자 길이 초과시 ...",
+    html: `<p class="text-three-dot" style="width:220px; border:1px solid black">길이가 긴 텍스트 입니다.ㅋㅋㅋㅋㅋㅋㅋㅋㅋ</p>`,
+    code: [
+      {
+        code: `<p class="text-three-dot" style="width:220px; border:1px solid black">길이가 긴 텍스트 입니다.ㅋㅋㅋㅋㅋㅋㅋㅋㅋ</p>`,
+        lang: ELanguages.xml,
+      },
+      {
+        code: `.text-three-dot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}`,
+        lang: ELanguages.scss,
+      },
+    ],
+  };
+};
 </script>
 
 <style lang="scss">
@@ -73,5 +98,10 @@ const text그라데이션 = () => {
   background-clip: text;
   color: transparent;
   font-size: 2rem;
+}
+.text-three-dot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>

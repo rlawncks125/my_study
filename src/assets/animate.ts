@@ -5,6 +5,7 @@ export class Accordion {
   animation: any | null;
   isClosing: boolean;
   isExpanding: boolean;
+  duration: number;
   constructor(el: HTMLElement) {
     // Store the <details> element
     this.el = el;
@@ -12,6 +13,7 @@ export class Accordion {
     this.summary = el.querySelector("summary");
     // Store the <div class="content"> element
     this.content = el.querySelector(".content");
+    // this.content = el;
 
     // Store the animation object (so we can cancel it if needed)
     this.animation = null;
@@ -19,6 +21,8 @@ export class Accordion {
     this.isClosing = false;
     // Store if the element is expanding
     this.isExpanding = false;
+    // duration
+    this.duration = 100;
     // Detect user clicks on the summary element
     this.summary?.addEventListener("click", (e) => this.onClick(e));
   }
@@ -59,7 +63,7 @@ export class Accordion {
         height: [startHeight, endHeight],
       },
       {
-        duration: 100,
+        duration: this.duration,
         easing: "ease-out",
       }
     );
@@ -102,7 +106,7 @@ export class Accordion {
         height: [startHeight, endHeight],
       },
       {
-        duration: 100,
+        duration: this.duration,
         easing: "ease-out",
       }
     );

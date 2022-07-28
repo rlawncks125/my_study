@@ -270,6 +270,13 @@ const routes: Array<RouteRecordRaw> = [
             /* webpackChunkName: "css디자인" */ "@/views/CSS디자인/image.vue"
           ),
       },
+      {
+        path: "details-summary",
+        component: () =>
+          import(
+            /* webpackChunkName: "css디자인" */ "@/views/CSS디자인/details-summary.vue"
+          ),
+      },
     ],
   },
   {

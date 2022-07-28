@@ -59,6 +59,9 @@
           <div class="menu-warp">
             <router-link to="/css디자인/text">text</router-link>
             <router-link to="/css디자인/image">image</router-link>
+            <router-link to="/css디자인/details-summary"
+              >details-summary</router-link
+            >
           </div>
         </div>
         <div class="title-warp">
@@ -200,20 +203,6 @@ h2 {
 li {
   transform: translateX(1.5rem);
   padding-right: 1.5rem;
-}
-
-details {
-  summary {
-    cursor: pointer;
-    padding: 0.5rem;
-
-    border: 1px solid black;
-    & ~ .content {
-      padding: 0.5rem;
-      border: 1px solid black;
-      border-top: 0px;
-    }
-  }
 }
 
 table {
