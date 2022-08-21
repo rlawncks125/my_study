@@ -1,5 +1,8 @@
 <template>
   <div>
+    <p>구글 검색 : '요소' animation [css]</p>
+    <border-anmiation />
+    <buutonAnmiation />
     <template v-for="item in items" :key="item.id">
       <h1>{{ item.title }}</h1>
       <div v-html="item.html"></div>
@@ -16,8 +19,11 @@ import {
   jsToCode,
 } from "@/components/NewCodeConvert.vue";
 import { defineComponent, onMounted } from "vue";
+import borderAnmiation from "./border-animation.vue";
+import buutonAnmiation from "./button-animation.vue";
 
 export default defineComponent({
+  components: { borderAnmiation, buutonAnmiation },
   setup() {
     const items = [bgGradientAni(), btnClickAnimate()];
 

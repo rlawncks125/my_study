@@ -4,7 +4,11 @@
       <h1>{{ item.title }}</h1>
       <div v-html="item.html"></div>
       <!-- <code-new :codeText="item.code" /> -->
-      <div style="margin: 0.5rem 0" v-for="code in item.code" :key="code.id">
+      <div
+        style="margin: 0.5rem 0"
+        v-for="(code, cindex) in item.code"
+        :key="cindex"
+      >
         <CodeEditor :value="code.code" :lang="code.lang" />
       </div>
     </template>
@@ -153,13 +157,13 @@ const tag = (): codeReutrnType => ({
 <option value="two" > 24 </option>
 </select>
 
-<from>
+<form>
   <fieldset>
     <legend> 그룹제목 </legend>
     <input type="text" value="inputText입니당." / >
     <input type="range" name="" id="" / >
   </fieldset>
-<from>
+<form>
 <!-- datalist 쓰는법 -->
 <datalist id="data-list" >
   <option value="Chocolate" > </option>
@@ -181,13 +185,13 @@ const tag = (): codeReutrnType => ({
   <option value="two" > 24 </option>
 </select>
 
-<from>
+<form>
   <fieldset>
     <legend> 그룹제목 </legend>
     <input type="text" value="inputText입니당." / >
     <input type="range" name="" id="" / >
   </fieldset>
-<from>
+<form>
 <!-- datalist 쓰는법 -->
 <datalist id="data-list" >
   <option value="Chocolate" > </option>
