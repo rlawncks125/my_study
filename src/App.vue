@@ -77,6 +77,7 @@
           <label for="check102">애니메이션</label>
           <div class="menu-warp">
             <router-link to="/anima">정리전</router-link>
+            <router-link to="/anima/input">input</router-link>
           </div>
         </div>
         <div class="title-warp">

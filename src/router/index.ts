@@ -370,6 +370,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/애니메이션/정리전.vue"),
   },
   {
+    path: "/anima/input",
+    component: () => import("@/views/애니메이션/input-animation.vue"),
+  },
+  {
     path: "/임시",
     component: () => import("@/views/임시.vue"),
   },
