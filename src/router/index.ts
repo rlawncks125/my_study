@@ -374,6 +374,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/애니메이션/input-animation.vue"),
   },
   {
+    path: "/scss_container",
+    component: () => import("@/views/SCSS-views/container.vue"),
+  },
+  {
     path: "/임시",
     component: () => import("@/views/임시.vue"),
   },
