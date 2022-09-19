@@ -378,6 +378,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/SCSS-views/container.vue"),
   },
   {
+    path: "/opener",
+    component: () => import("@/views/기타/opener.vue"),
+  },
+  {
+    path: "/opener_popup",
+    component: () => import("@/views/기타/opener_popup.vue"),
+  },
+  {
     path: "/임시",
     component: () => import("@/views/임시.vue"),
   },

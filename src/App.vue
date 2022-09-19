@@ -112,6 +112,7 @@
           <input type="checkbox" id="check9" />
           <label for="check9">기타</label>
           <div class="menu-warp">
+            <router-link to="/opener">opener</router-link>
             <!-- <router-link to="/함수_Promise_리턴값"
               >함수_Promise_리턴값</router-link
             > -->
