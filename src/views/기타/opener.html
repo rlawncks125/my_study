@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>opener</p>
+    <button onclick="openPopup()">open</button>
+
+    <script>
+      window.addEventListener("message", (event) => {
+        console.log(event);
+      });
+
+      function HandlePopupMsg(d) {
+        console.log(d);
+      }
+
+      const openPopup = () => {
+        const width = 300;
+        const height = 300;
+        // 포지션 center로 맞춘 값
+        const left = (window.innerWidth - width) / 2 + window.screenX;
+        const top = (window.innerHeight - height) / 2 + window.screenY;
+
+        const windowFeatures = `popup=true,width=${width},height=${height},left=${left},top=${top}`;
+        const popup = window.open(
+          "http://localhost:8080/opener_popup",
+          "_blank",
+          windowFeatures
+        );
+
+        popup?.focus();
+      };
+    </script>
+  </body>
+</html>
