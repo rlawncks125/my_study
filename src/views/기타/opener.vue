@@ -70,7 +70,7 @@ const windowFeatures = () => {
 // 내부
 const open_1 = (callback: (d: any) => void) => {
   const popup = window.open(
-    "http://localhost:8080/opener_popup",
+    "https://study.kimjuchan97.xyz/opener_popup",
     "popup_test",
     windowFeatures()
   );
@@ -87,7 +87,7 @@ const open_1 = (callback: (d: any) => void) => {
 // 내부,외부
 const open_2 = (callback: (d: any) => void) => {
   const popup = window.open(
-    "http://localhost:8080/opener_popup",
+    "https://study.kimjuchan97.xyz/opener_popup",
     "popup_test",
     windowFeatures()
   );
@@ -150,7 +150,7 @@ ${codewindowFeatures()}
 const open_1 = (callback: (d: any) => void) => {
 
   const popup = window.open(
-    "http://localhost:8080/opener_popup",
+    "https://study.kimjuchan97.xyz/opener_popup",
     "popup_test",
     windowFeatures()
   );
@@ -214,7 +214,7 @@ const openPopup_2 = () => {
 ${codewindowFeatures()}
 const open_2 = (callback: (d: any) => void) => {
   const popup = window.open(
-    "http://localhost:8080/opener_popup",
+    "https://study.kimjuchan97.xyz/opener_popup",
     "popup_test",
     windowFeatures()
   );
