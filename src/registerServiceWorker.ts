@@ -95,6 +95,7 @@ export class Worker {
         await deleteRegister(subscription!);
 
         await subscription?.unsubscribe();
+
         return this.isSubscribe();
       })
       .catch((err) => {
