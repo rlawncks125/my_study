@@ -60,7 +60,8 @@
     },
     "rules": {
       "@typescript-eslint/ban-ts-comment": "off",
-      "no-useless-escape": "off"
+      "no-useless-escape": "off",
+      "@typescript-eslint/no-empty-function": "off"
     }
   },
   "browserslist": [

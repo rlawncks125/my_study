@@ -38,12 +38,16 @@
     :languages="lamguages"
     width="100%"
   />
+
+  <button @click="subscript">구독 하기</button>
+  <button @click="unSubscript">구독 취소</button>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
 import simCode from "simple-code-editor";
 import { ELanguages } from "@/plugins/simple-code-editor.vue";
+import { Worker } from "@/registerServiceWorker";
 
 export default defineComponent({
   components: { simCode },
@@ -51,7 +55,14 @@ export default defineComponent({
     const cl = Object.keys(ELanguages);
     const lamguages = cl.map((v) => [v, v]);
 
-    return { lamguages };
+    const subscript = () => {
+      Worker.insatce.subscribe();
+    };
+    const unSubscript = () => {
+      Worker.insatce.unSubcribe();
+    };
+
+    return { lamguages, subscript, unSubscript };
   },
 });
 </script>
