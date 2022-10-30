@@ -92,5 +92,5 @@ self.addEventListener("push", (event) => {
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   console.log(event.data);
-  // event.waitUntil(clients.openWindow("https://study.kimjuchan97.xyz"));
+  event.waitUntil(self.clients.openWindow("https://study.kimjuchan97.xyz"));
 });
