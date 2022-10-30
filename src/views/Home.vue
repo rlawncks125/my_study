@@ -39,12 +39,12 @@
     width="100%"
   />
 
-  <button @click="subscript">구독 하기</button>
-  <button @click="unSubscript">구독 취소</button>
+  <button @click="subscribe">구독 하기</button>
+  <button @click="unSubcribe">구독 취소</button>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import simCode from "simple-code-editor";
 import { ELanguages } from "@/plugins/simple-code-editor.vue";
 import { Worker } from "@/registerServiceWorker";
@@ -55,14 +55,32 @@ export default defineComponent({
     const cl = Object.keys(ELanguages);
     const lamguages = cl.map((v) => [v, v]);
 
-    const subscript = () => {
-      Worker.insatce.subscribe();
+    const subscribe = async () => {
+      const isSubscrib = await Worker.insatce.isSubscribe();
+
+      if (isSubscrib) {
+        alert("이미 구독 하셨습니다.");
+        return;
+      }
+
+      await Worker.insatce.subscribe();
+      alert("구독 하였습니다.");
     };
-    const unSubscript = () => {
-      Worker.insatce.unSubcribe();
+    const unSubcribe = async () => {
+      const isSubscrib = await Worker.insatce.isSubscribe();
+
+      if (!isSubscrib) {
+        alert("구독하지 않으셨습니다.");
+        return;
+      }
+
+      await Worker.insatce.unSubcribe();
+      alert("구독취소 완료");
     };
 
-    return { lamguages, subscript, unSubscript };
+    onMounted(async () => {});
+
+    return { lamguages, subscribe, unSubcribe };
   },
 });
 </script>
