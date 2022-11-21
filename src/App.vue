@@ -288,6 +288,7 @@ blockquote {
     max-height: 100vh;
     position: sticky;
     top: 0px;
+    overflow: hidden;
 
     // 스크롤바 없애기
     scrollbar-width: none;
