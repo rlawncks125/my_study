@@ -41,6 +41,9 @@
 
   <button @click="subscribe">구독 하기</button>
   <button @click="unSubcribe">구독 취소</button>
+  <button @click="showSubcribe">구독 정보</button>
+  <button @click="login">구독 로그인</button>
+  <button @click="logout">구독 로그아웃</button>
 </template>
 
 <script lang="ts">
@@ -78,9 +81,22 @@ export default defineComponent({
       alert("구독취소 완료");
     };
 
+    const showSubcribe = async () => {
+      console.log(await Worker.insatce.getSubcribeAuth());
+    };
+
+    const login = async () => {
+      const res = await Worker.insatce.registerByUser(8);
+      console.log(res);
+    };
+    const logout = async () => {
+      const res = await Worker.insatce.removeRegisterByUser();
+      console.log(res);
+    };
+
     onMounted(async () => {});
 
-    return { lamguages, subscribe, unSubcribe };
+    return { lamguages, subscribe, unSubcribe, showSubcribe, login, logout };
   },
 });
 </script>

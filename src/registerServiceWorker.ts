@@ -17,7 +17,7 @@ register(`${process.env.BASE_URL}sw.js`, {
     Worker.insatce.setRegist(regist);
 
     console.log("Service worker has been registered.");
-    console.log(Worker.insatce.register);
+    // console.log(Worker.insatce.register);
   },
   cached() {
     console.log("Content has been cached for offline use.");
@@ -59,16 +59,17 @@ export class Worker {
     return this.#regist.installing;
   }
 
+  /** 구독 상태 여부 */
   async isSubscribe() {
     return (await this.#regist.pushManager.getSubscription()) !== null;
   }
 
+  /** 구독 하기 */
   async subscribe() {
-    // 백엔드에서 키받아오기
-
     return await this.#regist.pushManager
       .subscribe({
         userVisibleOnly: true,
+        // 백엔드에서 키받아오기
         applicationServerKey: await getPublickey(),
       })
       .then(async (subscriptuon) => {
@@ -86,13 +87,14 @@ export class Worker {
       });
   }
 
+  /** 구독 취소 */
   async unSubcribe() {
     if ((await this.isSubscribe()) === null) return;
     return await this.#regist.pushManager
       .getSubscription()
       .then(async (subscription) => {
         // 백엔드 구독 삭제
-        await deleteRegister(subscription!);
+        await deleteRegister();
 
         await subscription?.unsubscribe();
 
@@ -102,32 +104,71 @@ export class Worker {
         console.log("Failed to unSubscribe the user: ", err);
       });
   }
+
+  async getSubcribeAuth() {
+    return this.#regist.pushManager.getSubscription().then((subscription) => {
+      if (!subscription) return null;
+      const {
+        keys: { auth },
+      } = JSON.parse(JSON.stringify(subscription));
+
+      return auth;
+    });
+  }
+
+  /** 유저 아이디 등록 */
+  async registerByUser(userId: number) {
+    const auth = await Worker.insatce.getSubcribeAuth();
+
+    if (!auth) return;
+
+    return await axios
+      .post("https://myapi.kimjuchan97.xyz/notification/register-user", {
+        auth,
+        userId,
+      })
+      .then((res) => res.data as number);
+  }
+
+  /** 유저 아이디 제거 */
+  async removeRegisterByUser() {
+    const auth = await Worker.insatce.getSubcribeAuth();
+
+    if (!auth) return;
+
+    return await axios
+      .post("https://myapi.kimjuchan97.xyz/notification/register-user-remove", {
+        auth,
+      })
+      .then((res) => res.data as number);
+  }
 }
 
+/** 공개키 받아오기 */
 async function getPublickey() {
-  // return await useFetch<{ key: string }>(
-  //   `${ApiServer.url}/notification/publicKey`,
-  //   {
-  //     pick: ["key"],
-  //   }
-  // ).then((res) => res.data.value.key);
   return await axios
     .get("https://myapi.kimjuchan97.xyz/notification/publicKey")
     .then((res) => res.data.key as string);
 }
 
+/** 알람 등록 */
 async function registerNotification(subscription: any) {
   return await axios
     .post("https://myapi.kimjuchan97.xyz/notification/register", {
-      endPoint: subscription,
+      subscription,
     })
     .then((res) => res.data.id as number);
 }
 
-async function deleteRegister(subscription: PushSubscription) {
-  const {
-    keys: { auth },
-  } = JSON.parse(JSON.stringify(subscription));
+/** 알람 삭제 */
+async function deleteRegister() {
+  // const {
+  //   keys: { auth },
+  // } = JSON.parse(JSON.stringify(subscription));
+
+  const auth = await Worker.insatce.getSubcribeAuth();
+
+  if (!auth) return;
 
   // return await fetch(`${ApiServer.url}/notification/${auth}`, {
   //   method: "DELETE",
