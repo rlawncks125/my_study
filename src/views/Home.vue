@@ -44,6 +44,8 @@
   <button @click="showSubcribe">구독 정보</button>
   <button @click="login">구독 로그인</button>
   <button @click="logout">구독 로그아웃</button>
+
+  <timeRe />
 </template>
 
 <script lang="ts">
@@ -51,9 +53,10 @@ import { defineComponent, onMounted, ref } from "vue";
 import simCode from "simple-code-editor";
 import { ELanguages } from "@/plugins/simple-code-editor.vue";
 import { Worker } from "@/registerServiceWorker";
+import timeRe from "@/views/기타/시간.vue";
 
 export default defineComponent({
-  components: { simCode },
+  components: { simCode, timeRe },
   setup() {
     const cl = Object.keys(ELanguages);
     const lamguages = cl.map((v) => [v, v]);
