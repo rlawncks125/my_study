@@ -1,31 +1,41 @@
 <template>
   <div>시간 계산</div>
 
-  <p>
-    {{ pastDate(time) }}
-  </p>
-  <p>
-    {{ nextDate(nuxtTime) }}
-  </p>
+  <input type="date" name="" id="" v-model="date" />
+  <input type="time" name="" id="" v-model="time" />
+  <br />
+  {{ `${date}T${time}` }}
+  <p>지난 시간 : {{ pastDate(new Date(`${date}T${time}`)) }}</p>
+  <p>이후 시간 : {{ nextDate(new Date(`${date}T${time}`)) }}</p>
 </template>
 
 <script setup lang="ts">
-const time = new Date("2022-11-23T11:45:00");
-const nuxtTime = new Date("2022-11-24T11:45:00");
+import { ref } from "vue";
+
+const pastTime = new Date("2022-11-23T11:00:00");
+const nextTime = new Date("2022-11-23T13:00:00");
+
+const date = ref("");
+const time = ref("00:00:00");
 
 const pastDate = (date: Date) => {
-  const format = new Intl.RelativeTimeFormat("ko", { numeric: "auto" });
   const answerTime = Date.now() - date.getTime();
   const answerDate = new Date(answerTime);
 
-  const sec = answerTime / 1000;
-  const min = sec / 60;
-  const horus = min / 60;
+  const format = new Intl.RelativeTimeFormat("ko", { numeric: "auto" });
+
+  const _sec = answerTime / 1000;
+  const _min = _sec / 60;
+  const _horus = _min / 60;
+
+  const sec = Math.floor(_sec);
+  const min = Math.floor(_min);
+  const horus = Math.floor(_horus);
   const day = answerDate.getDate() - 1;
   const month = answerDate.getMonth();
   const year = answerDate.getFullYear() - 1970;
 
-  if (year < 0) {
+  if (year < 0 || horus < 0 || min < 0 || sec < 0) {
     return "이후에 날짜입니다.";
   }
 
@@ -51,18 +61,23 @@ const pastDate = (date: Date) => {
 };
 
 const nextDate = (date: Date) => {
-  const format = new Intl.RelativeTimeFormat("ko", { numeric: "auto" });
   const answerTime = date.getTime() - Date.now();
   const answerDate = new Date(answerTime);
 
-  const sec = answerTime / 1000;
-  const min = sec / 60;
-  const horus = min / 60;
+  const format = new Intl.RelativeTimeFormat("ko", { numeric: "auto" });
+
+  const _sec = answerTime / 1000;
+  const _min = _sec / 60;
+  const _horus = _min / 60;
+
+  const sec = Math.floor(_sec);
+  const min = Math.floor(_min);
+  const horus = Math.floor(_horus);
   const day = answerDate.getDate() - 1;
   const month = answerDate.getMonth();
   const year = answerDate.getFullYear() - 1970;
 
-  if (year < 0) {
+  if (year < 0 || horus < 0 || min < 0 || sec < 0) {
     return "이전 날짜 입니다.";
   }
 
