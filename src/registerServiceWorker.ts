@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { register } from "register-service-worker";
+import { ref } from "vue";
 
 console.log(process.env.BASE_URL);
 
@@ -45,14 +46,25 @@ export class Worker {
 
   static insatce = new Worker();
 
+  #isSubscribe = ref<boolean>();
   constructor() {}
 
   get register() {
     return this.#regist;
   }
 
-  setRegist(regist: ServiceWorkerRegistration) {
+  get getterIsSubscribe() {
+    return this.#isSubscribe.value;
+  }
+
+  async setRegist(regist: ServiceWorkerRegistration) {
     this.#regist = regist;
+    this.isSubscribe();
+
+    // 알람 권한 변경으로 기존 구독이 삭제안됐을시 삭제
+    if (!this.getterIsSubscribe) {
+      await deleteRegisterLocalStorege();
+    }
   }
 
   installing() {
@@ -61,24 +73,40 @@ export class Worker {
 
   /** 구독 상태 여부 */
   async isSubscribe() {
-    return (await this.#regist.pushManager.getSubscription()) !== null;
+    const status = (await this.#regist.pushManager.getSubscription()) !== null;
+    this.#isSubscribe.value = status;
+    return status;
   }
 
   /** 구독 하기 */
   async subscribe() {
+    if (Notification.permission !== "granted") {
+      alert("알림 권한 요청을 수락해 주세요.");
+
+      // 알림 권한 요청
+      return;
+    }
+    if (await this.isSubscribe()) {
+      alert("이미 구독하였습니다.");
+      return;
+    }
+
     return await this.#regist.pushManager
       .subscribe({
         userVisibleOnly: true,
         // 백엔드에서 키받아오기
         applicationServerKey: await getPublickey(),
       })
-      .then(async (subscriptuon) => {
-        console.log(JSON.stringify(subscriptuon));
+      .then(async (subscription) => {
+        console.log(JSON.stringify(subscription));
         // 백엔드 구독 등록
 
-        const id = await registerNotification(subscriptuon);
-
+        const id = await registerNotification(subscription);
         console.log(id);
+
+        // 알림 차단을 했을시 이전 구독 정보를 저장하기위한 용도
+        localStorage.setItem("subscription", JSON.stringify(subscription));
+        alert("구독하였습니다.");
 
         return this.isSubscribe();
       })
@@ -176,4 +204,23 @@ async function deleteRegister() {
   return await axios.delete(
     `https://myapi.kimjuchan97.xyz/notification/${auth}`
   );
+}
+
+/** 로컬스토리지 구독 삭제 */
+async function deleteRegisterLocalStorege() {
+  const subscription = localStorage.getItem("subscription");
+
+  if (!subscription) return;
+  const {
+    keys: { auth },
+  } = JSON.parse(subscription);
+
+  if (!auth) return;
+
+  const ok = await axios.delete(
+    `https://myapi.kimjuchan97.xyz/notification/${auth}`
+  );
+
+  localStorage.removeItem("subscription");
+  return ok;
 }

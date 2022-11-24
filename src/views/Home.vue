@@ -39,67 +39,43 @@
     width="100%"
   />
 
-  <button @click="subscribe">구독 하기</button>
-  <button @click="unSubcribe">구독 취소</button>
-  <button @click="showSubcribe">구독 정보</button>
-  <button @click="login">구독 로그인</button>
-  <button @click="logout">구독 로그아웃</button>
+  <div>
+    <h1>구독</h1>
+    <subscribe />
+    <br />
+  </div>
 
-  <timeRe />
+  <div>
+    <h1>시간 계산</h1>
+    <timeRe />
+    <br />
+  </div>
+
+  <div>
+    <h1>알림</h1>
+    <notification />
+    <br />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue";
 import simCode from "simple-code-editor";
 import { ELanguages } from "@/plugins/simple-code-editor.vue";
-import { Worker } from "@/registerServiceWorker";
+
 import timeRe from "@/views/기타/시간.vue";
+import subscribe from "@/views/기타/구독.vue";
+import notification from "@/views/기타/알림.vue";
 
 export default defineComponent({
-  components: { simCode, timeRe },
+  components: { simCode, timeRe, subscribe, notification },
   setup() {
     const cl = Object.keys(ELanguages);
     const lamguages = cl.map((v) => [v, v]);
 
-    const subscribe = async () => {
-      const isSubscrib = await Worker.insatce.isSubscribe();
-
-      if (isSubscrib) {
-        alert("이미 구독 하셨습니다.");
-        return;
-      }
-
-      await Worker.insatce.subscribe();
-      alert("구독 하였습니다.");
-    };
-    const unSubcribe = async () => {
-      const isSubscrib = await Worker.insatce.isSubscribe();
-
-      if (!isSubscrib) {
-        alert("구독하지 않으셨습니다.");
-        return;
-      }
-
-      await Worker.insatce.unSubcribe();
-      alert("구독취소 완료");
-    };
-
-    const showSubcribe = async () => {
-      console.log(await Worker.insatce.getSubcribeAuth());
-    };
-
-    const login = async () => {
-      const res = await Worker.insatce.registerByUser(8);
-      console.log(res);
-    };
-    const logout = async () => {
-      const res = await Worker.insatce.removeRegisterByUser();
-      console.log(res);
-    };
-
     onMounted(async () => {});
 
-    return { lamguages, subscribe, unSubcribe, showSubcribe, login, logout };
+    return { lamguages };
   },
 });
 </script>
