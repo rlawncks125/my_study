@@ -59,11 +59,11 @@ export class Worker {
 
   async setRegist(regist: ServiceWorkerRegistration) {
     this.#regist = regist;
-    this.isSubscribe();
+    await this.isSubscribe();
 
     // 알람 권한 변경으로 기존 구독이 삭제안됐을시 삭제
     if (!this.getterIsSubscribe) {
-      await deleteRegisterLocalStorege();
+      deleteRegisterLocalStorege();
     }
   }
 
