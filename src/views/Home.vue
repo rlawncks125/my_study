@@ -56,6 +56,8 @@
     <notification />
     <br />
   </div>
+
+  <device />
 </template>
 
 <script lang="ts">
@@ -66,9 +68,10 @@ import { ELanguages } from "@/plugins/simple-code-editor.vue";
 import timeRe from "@/views/기타/시간.vue";
 import subscribe from "@/views/기타/구독.vue";
 import notification from "@/views/기타/알림.vue";
+import device from "@/views/기타/디바이스_구분.vue";
 
 export default defineComponent({
-  components: { simCode, timeRe, subscribe, notification },
+  components: { simCode, timeRe, subscribe, notification, device },
   setup() {
     const cl = Object.keys(ELanguages);
     const lamguages = cl.map((v) => [v, v]);
