@@ -13,25 +13,6 @@
 import { defineComponent, PropType } from "vue";
 import CodeEditor from "simple-code-editor";
 
-export default defineComponent({
-  props: {
-    code: String,
-    lang: {
-      type: String as PropType<ELanguages>,
-    },
-  },
-  components: {
-    CodeEditor,
-  },
-  setup(props) {
-    const editorLanges = (lang: ELanguages) => {
-      return [[lang, lang]];
-    };
-
-    return { editorLanges };
-  },
-});
-
 export enum ELanguages {
   "1c" = "1c",
   "abnf" = "abnf",
@@ -225,6 +206,26 @@ export enum ELanguages {
   "xquery" = "xquery",
   "zephir" = "zephir",
 }
+
+export default defineComponent({
+  props: {
+    code: String,
+    lang: {
+      type: String as PropType<ELanguages>,
+      defalut: ELanguages["1c"],
+    },
+  },
+  components: {
+    CodeEditor,
+  },
+  setup(props) {
+    const editorLanges = (lang: ELanguages) => {
+      return [[lang, lang]];
+    };
+
+    return { editorLanges };
+  },
+});
 
 export interface codeReutrnType {
   title?: string;

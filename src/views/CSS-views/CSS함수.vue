@@ -28,11 +28,20 @@
     <template #content>잘안쓸거같음</template>
     <template #code>{{ Shape }} </template>
   </code-convert>
+
+  <div>
+    <h1>attr()</h1>
+    <span class="attr-1" data-cnt="5">test</span>
+    <div style="margin: 0.5rem 0">
+      <CodeEditor :value="attr" :lang="ELanguages.scss" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive, toRefs } from "vue";
 import { codeProcess } from "../../components/codeConvert.vue";
+import { codeReutrnType, ELanguages } from "@/plugins/simple-code-editor.vue";
 
 export default defineComponent({
   setup() {
@@ -99,9 +108,56 @@ export default defineComponent({
     inset()
     polygon()`),
     });
-    return { ...toRefs(data) };
+
+    const attr = `
+<span class="attr-1" data-cnt="5">test</span>
+
+.attr-1 {
+  position: relative;
+  border: 1px solid black;
+  padding: 0 1rem;
+
+  &::after {
+    content: attr(data-cnt);
+    position: absolute;
+    top: -0.75em;
+    right: -0.75em;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+  }
+}
+    `;
+    return { ...toRefs(data), attr, ELanguages };
   },
 });
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.attr-1 {
+  display: inline;
+  position: relative;
+  border: 1px solid black;
+  padding: 0 1rem;
+
+  &::after {
+    content: attr(data-cnt);
+    position: absolute;
+    top: -0.75em;
+    right: -0.75em;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+  }
+}
+</style>

@@ -14,6 +14,9 @@
     <p>
       {{ isTouch2() }}
     </p>
+    <p>
+      {{ isTouch3() }}
+    </p>
   </div>
 </template>
 
@@ -33,7 +36,10 @@ const isMobile3 = () =>
   );
 
 const isTouch = () => "ontouchstart" in document.documentElement;
-const isTouch2 = () => {
+/** 2in1노트북, 터치내장 모니터등 체크 */
+const isTouch2 = () =>
+  navigator.maxTouchPoints || "ontouchstart" in document.documentElement;
+const isTouch3 = () => {
   try {
     document.createEvent("TouchEvent");
     return true;
