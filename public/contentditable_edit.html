@@ -29,11 +29,12 @@
       <button id="btn-ordered-list">OL</button>
       <button id="btn-unordered-list">UL</button>
       <button id="btn-image">IMG</button>
+      <input id="input-color" type="color" />
     </div>
     <div
       id="editor"
       contenteditable="true"
-      style="border: 1px solid black"
+      style="border: 1px solid black; padding: 1rem"
     ></div>
 
     <script>
@@ -44,6 +45,12 @@
       const btnStrike = document.getElementById("btn-strike");
       const btnOrderedList = document.getElementById("btn-ordered-list");
       const btnUnorderedList = document.getElementById("btn-unordered-list");
+      const btnImage = document.getElementById("btn-image");
+      const inputColor = document.getElementById("input-color");
+
+      editor.addEventListener("mouseup", (e) => {
+        checkStyle();
+      });
 
       btnBold.addEventListener("click", function () {
         setStyle("bold");
@@ -68,8 +75,25 @@
       btnUnorderedList.addEventListener("click", function () {
         setStyle("insertUnorderedList");
       });
+      btnImage.addEventListener("click", () => {
+        document.execCommand(
+          "insertImage",
+          true,
+          "https://res.cloudinary.com/dhdq4v4ar/image/upload/v1668551633/back-Portfolio/zc0ogw548s7yn1lxxiig.png"
+        );
+      });
+
+      inputColor.addEventListener("change", (e) => {
+        document.execCommand("foreColor", true, e.target.value);
+      });
 
       function setStyle(style) {
+        /**
+         * contentEditable 속성 사용할때
+         * execCommand() 호출로 현재 활성화된
+         * 편집 요소(선택된 요소)에 영향을 미침
+         * @link https://developer.mozilla.org/ko/docs/Web/API/Document/execCommand#commands
+         */
         document.execCommand(style);
         focusEditor();
         checkStyle();
@@ -82,40 +106,56 @@
 
       // 적용 스타일 체크
       function checkStyle() {
-        if (isStyle("bold")) {
-          btnBold.classList.add("active");
-        } else {
-          btnBold.classList.remove("active");
-        }
-        if (isStyle("italic")) {
-          btnItalic.classList.add("active");
-        } else {
-          btnItalic.classList.remove("active");
-        }
-        if (isStyle("underline")) {
-          btnUnderline.classList.add("active");
-        } else {
-          btnUnderline.classList.remove("active");
-        }
-        if (isStyle("strikeThrough")) {
-          btnStrike.classList.add("active");
-        } else {
-          btnStrike.classList.remove("active");
-        }
-        if (isStyle("insertOrderedList")) {
-          btnOrderedList.classList.add("active");
-        } else {
-          btnOrderedList.classList.remove("active");
-        }
-        if (isStyle("insertUnorderedList")) {
-          btnUnorderedList.classList.add("active");
-        } else {
-          btnUnorderedList.classList.remove("active");
-        }
+        isStyle("bold")
+          ? btnBold.classList.add("active")
+          : btnBold.classList.remove("active");
+
+        isStyle("italic")
+          ? btnItalic.classList.add("active")
+          : btnItalic.classList.remove("active");
+
+        isStyle("underline")
+          ? btnUnderline.classList.add("active")
+          : btnUnderline.classList.remove("active");
+
+        isStyle("strikeThrough")
+          ? btnStrike.classList.add("active")
+          : btnStrike.classList.remove("active");
+
+        isStyle("insertOrderedList")
+          ? btnOrderedList.classList.add("active")
+          : btnOrderedList.classList.remove("active");
+
+        isStyle("insertUnorderedList")
+          ? btnUnorderedList.classList.add("active")
+          : btnUnorderedList.classList.remove("active");
+
+        // 폰트 컬러
+        const rgb = document
+          .queryCommandValue("foreColor")
+          .replace("rgb", "")
+          .slice(1, -1)
+          .split(",");
+
+        const hex = rgbToHex(rgb);
+
+        inputColor.value = hex;
       }
 
       function isStyle(style) {
         return document.queryCommandState(style);
+      }
+
+      function componentToHex(c) {
+        var hex = c.toString(16);
+        return hex.length == 1 ? "0" + hex : hex;
+      }
+
+      function rgbToHex(rgb) {
+        const [r, g, b] = rgb;
+        return (
+          "#" + componentToHex(+r) + componentToHex(+g) + componentToHex(+b)
+        );
       }
     </script>
   </body>
