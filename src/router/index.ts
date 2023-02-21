@@ -90,6 +90,12 @@ const routes: Array<RouteRecordRaw> = [
       ),
   },
   {
+    path: "/HTML_Dialog",
+    name: "Dialog",
+    component: () =>
+      import(/* webpackChunkName: "HTML" */ "../views/HTML-views/Dialog.vue"),
+  },
+  {
     path: "/시멘틱태그",
     name: "시멘틱태그",
     component: () =>

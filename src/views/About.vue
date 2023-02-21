@@ -3,6 +3,8 @@
   <input type="text" v-model.number="s.setX" />
   <input type="text" v-model.number="s.setY" />
   <button @click="click">클릭</button>
+
+  <div class="loader"></div>
 </template>
 
 <script lang="ts">
@@ -49,4 +51,38 @@ const functionReturn = () => {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss">
+// variables
+$size: 100px !default;
+$thickness: 6px !default;
+$base-color: rgb(192, 187, 187) !default;
+$wheel-color: #c30 !default;
+$speed: 800ms !default;
+
+// styles
+
+.loader {
+  margin: 5% auto;
+  height: $size;
+  width: $size;
+  border: $thickness solid $base-color;
+  border: {
+    // right-color: $wheel-color;
+    top-color: $wheel-color;
+    radius: 100%;
+  }
+  // animation: spin $speed infinite linear;
+
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+</style>

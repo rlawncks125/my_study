@@ -11,6 +11,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css"
     />
     <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <!-- 모바일에서 개발자도구 볼수있게 하는 라이브러리 -->
+    <!-- 출처: https://www.youtube.com/watch?v=xWk3qHleZ4c&list=LL&index=1-->
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+      eruda.init();
+    </script>
   </head>
   <body>
     <noscript>

@@ -27,6 +27,7 @@
             <router-link to="/HTML_테이블관련">테이블관련</router-link>
             <router-link to="/HTML_폼관련">폼관련</router-link>
             <router-link to="/HTML_멀티미디어관련">멀티미디어</router-link>
+            <router-link to="/HTML_Dialog">다이얼로그</router-link>
           </div>
         </div>
         <div class="title-warp">
