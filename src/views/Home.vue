@@ -58,9 +58,27 @@
   </div>
 
   <device />
+
+  <div>
+    <h2>다이얼 로그</h2>
+    <button @click="() => dialogCompoRef?.showModel()">다이얼 로그 OPEN</button>
+
+    <DialogSlot
+      ref="dialogCompoRef"
+      :title="'다이얼로그 제목 테스트'"
+      animation="dialog-opacity"
+    >
+      <!-- content -->
+      <div>
+        <h1>다이얼 내용 입니다.</h1>
+        <h2>다이얼 내용 입니다.</h2>
+        <h3>다이얼 내용 입니다.</h3>
+      </div>
+    </DialogSlot>
+  </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent, onMounted, ref } from "vue";
 import simCode from "simple-code-editor";
 import { ELanguages } from "@/plugins/simple-code-editor.vue";
@@ -69,18 +87,13 @@ import timeRe from "@/views/기타/시간.vue";
 import subscribe from "@/views/기타/구독.vue";
 import notification from "@/views/기타/알림.vue";
 import device from "@/views/기타/디바이스_구분.vue";
+import DialogSlot from "@/components/DialogSlot.vue";
 
-export default defineComponent({
-  components: { simCode, timeRe, subscribe, notification, device },
-  setup() {
-    const cl = Object.keys(ELanguages);
-    const lamguages = cl.map((v) => [v, v]);
+const cl = Object.keys(ELanguages);
+const lamguages = cl.map((v) => [v, v]);
+const dialogCompoRef = ref<InstanceType<typeof DialogSlot>>();
 
-    onMounted(async () => {});
-
-    return { lamguages };
-  },
-});
+onMounted(async () => {});
 </script>
 
 <style lang="scss" scoped>

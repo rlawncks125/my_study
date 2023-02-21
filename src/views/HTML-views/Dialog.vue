@@ -133,7 +133,7 @@ const closeBackDropClick = (e: any) => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 // max-width , max-height 가 - (2rem + 6px ) 설정되있음
 $dialog-width: 70vw;
 $dialog-x-center: (100vw - $dialog-width) / 2;
@@ -156,6 +156,8 @@ dialog {
   &::backdrop {
     background-color: rgba($color: #000000, $alpha: 0.7);
   }
+
+  animation: dialog-show 0.4s ease-in-out;
 }
 
 dialog .head {
@@ -177,5 +179,17 @@ dialog .head {
 
 dialog .content {
   padding: 0 2rem;
+}
+
+@keyframes dialog-show {
+  0% {
+    transform: translateY(-100%);
+  }
+  80% {
+    transform: translateY(5%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 </style>
