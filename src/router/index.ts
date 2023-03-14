@@ -380,6 +380,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/views/애니메이션/input-animation.vue"),
   },
   {
+    path: "/anima/bgHidden",
+    component: () => import("@/views/애니메이션/BgHideEffect.vue"),
+  },
+  {
     path: "/scss_container",
     component: () => import("@/views/SCSS-views/container.vue"),
   },
