@@ -7,6 +7,10 @@
   {{ `${date}T${time}` }}
   <p>지난 시간 : {{ pastDate(new Date(`${date}T${time}`)) }}</p>
   <p>이후 시간 : {{ nextDate(new Date(`${date}T${time}`)) }}</p>
+  <p>
+    시간 차이 :
+    {{ gapTime }}
+  </p>
 </template>
 
 <script setup lang="ts">
@@ -14,6 +18,8 @@ import { ref } from "vue";
 
 const pastTime = new Date("2022-11-23T11:00:00");
 const nextTime = new Date("2022-11-23T13:00:00");
+
+const gapTime = ref();
 
 const date = ref("");
 const time = ref("00:00:00");
@@ -63,6 +69,7 @@ const pastDate = (date: Date) => {
 const nextDate = (date: Date) => {
   const answerTime = date.getTime() - Date.now();
   const answerDate = new Date(answerTime);
+  gapTime.value = answerTime;
 
   const format = new Intl.RelativeTimeFormat("ko", { numeric: "auto" });
 
@@ -91,10 +98,16 @@ const nextDate = (date: Date) => {
     return format.format(day, "day");
   }
   if (Math.floor(horus)) {
-    return format.format(Math.floor(horus), "hours");
+    return (
+      format.format(Math.floor(horus), "hours") +
+      format.format(Math.floor(min % 60), "minutes")
+    );
   }
   if (Math.floor(min)) {
-    return format.format(Math.floor(min), "minutes");
+    return (
+      format.format(Math.floor(min), "minutes") +
+      format.format(Math.floor(sec % 60), "seconds")
+    );
   }
   if (Math.floor(sec)) {
     return format.format(Math.floor(sec), "seconds");
