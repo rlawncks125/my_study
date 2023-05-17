@@ -25,6 +25,10 @@
   <span class="텍스트넓이감지" ref="텍스트넓이감지" :style="spanStyle">
     {{ textModel }}
   </span>
+  <Icon icon="logos-google-play-icon" />
+  <BuggerType1 />
+  <!-- <ButtonType1 /> -->
+  <ButtonType2 />
 
   <template v-for="item in items" :key="item.id">
     <h1>{{ item.title }}</h1>
@@ -42,9 +46,12 @@ import codeTest, {
   descriptionTocode,
 } from "@/components/NewCodeConvert.vue";
 import { defineComponent, reactive, ref, toRefs, watch } from "vue";
-
+import { Icon } from "@iconify/vue";
+import ButtonType1 from "@/components/button/list-type1.vue";
+import ButtonType2 from "@/components/button/list-type2.vue";
+import BuggerType1 from "@/components/button/hambugger1.vue";
 export default defineComponent({
-  components: { codeTest },
+  components: { codeTest, Icon, ButtonType2, BuggerType1 },
   setup() {
     const 텍스트넓이감지 = ref<HTMLSpanElement>();
     const data = reactive({
