@@ -7,6 +7,19 @@
       <div style="margin: 0.5rem 0" v-for="code in item.code" :key="code.id">
         <CodeEditor :value="code.code" :lang="code.lang" />
       </div>
+      <!-- <DescDesign>
+        <template #header>{{ item.title }}</template>
+        <div v-html="item.html"></div>
+        <template #code>
+          <div
+            style="margin: 0.5rem 0"
+            v-for="code in item.code"
+            :key="code.id"
+          >
+            <CodeEditor :value="code.code" :lang="code.lang" />
+          </div>
+        </template>
+      </DescDesign> -->
     </template>
   </div>
 </template>
@@ -14,8 +27,10 @@
 <script lang="ts">
 import { codeReutrnType, ELanguages } from "@/plugins/simple-code-editor.vue";
 import { defineComponent } from "vue";
+import DescDesign from "@/components/descDesign.vue";
 
 export default defineComponent({
+  // components: { DescDesign },
   setup() {
     const items = [main(), idnex(), 모듈1(), 모듈2()];
     return { items };

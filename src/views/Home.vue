@@ -1,6 +1,22 @@
 <template>
   <div>Home github -> Netlify 배포 변경</div>
   <div>
+    <li>
+      <a
+        href="https://cultured-comb-be6.notion.site/fb4ebe223f3f443ba6f74c84c731e461?pvs=4"
+        target="_blank"
+        >직무면접 1</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://cultured-comb-be6.notion.site/2-87bb5b42bc424689a9a61337f4681121?pvs=4"
+        target="_blank"
+        >직무면접 2</a
+      >
+    </li>
+  </div>
+  <div>
     퍼블 연습 사이트
     <a
       href="https://rlawncks125.github.io/front-git-practice/"
