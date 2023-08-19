@@ -15,6 +15,13 @@
         >직무면접 2</a
       >
     </li>
+    <li>
+      <a
+        href="https://cultured-comb-be6.notion.site/b7e2c70647254e2c849509b773e3d432?pvs=4"
+        target="_blank"
+        >오케스트로 회사 정보</a
+      >
+    </li>
   </div>
   <div>
     퍼블 연습 사이트
