@@ -3,6 +3,13 @@
   <div>
     <li>
       <a
+        href="https://cultured-comb-be6.notion.site/2-5d2af98a92ef4650b54f8e07ecf2a46e?pvs=4"
+        target="_blank"
+        >면접</a
+      >
+    </li>
+    <li>
+      <a
         href="https://cultured-comb-be6.notion.site/fb4ebe223f3f443ba6f74c84c731e461?pvs=4"
         target="_blank"
         >직무면접 1</a
