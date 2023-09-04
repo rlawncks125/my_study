@@ -5,28 +5,23 @@
       <a
         href="https://cultured-comb-be6.notion.site/2-5d2af98a92ef4650b54f8e07ecf2a46e?pvs=4"
         target="_blank"
-        >면접@</a
+        >면접@ 질문</a
       >
     </li>
+    <br />
     <li>
       <a
-        href="https://cultured-comb-be6.notion.site/fb4ebe223f3f443ba6f74c84c731e461?pvs=4"
+        href="https://cultured-comb-be6.notion.site/70391de9b4aa4783a470ff985372da5c?pvs=4"
         target="_blank"
-        >직무면접 1</a
+        >직무면접</a
       >
     </li>
+    <br />
     <li>
       <a
-        href="https://cultured-comb-be6.notion.site/2-87bb5b42bc424689a9a61337f4681121?pvs=4"
+        href="https://cultured-comb-be6.notion.site/VUE-NUXT-4ed52f9c8757480b86f87c054d8b04bd?pvs=4"
         target="_blank"
-        >직무면접 2</a
-      >
-    </li>
-    <li>
-      <a
-        href="https://cultured-comb-be6.notion.site/b7e2c70647254e2c849509b773e3d432?pvs=4"
-        target="_blank"
-        >오케스트로 회사 정보</a
+        >직무 면접 VUE</a
       >
     </li>
   </div>
